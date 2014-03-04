@@ -1,3 +1,5 @@
 ---
 classes:
   - apt::unattended_upgrades
+
+apt::unattended_upgrades::mail_to: 'machine.email@digital.cabinet-office.gov.uk'
