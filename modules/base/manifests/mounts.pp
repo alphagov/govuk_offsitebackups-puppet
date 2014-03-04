@@ -1,5 +1,5 @@
 # == Class: base::mounts
-# 
+#
 # Assuming the VM is not a dev VM, then:
 #
 # - configure LVM disks
@@ -9,7 +9,7 @@
 
 class base::mounts {
 
-    file { '/srv/backup_data':
+    file { '/srv/backup-data':
         ensure =>   directory,
         owner  =>   'govuk-backup',
     }
