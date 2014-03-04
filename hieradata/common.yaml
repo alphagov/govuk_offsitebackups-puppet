@@ -1,3 +1,4 @@
 ---
 classes:
-  - base
+  - base::mounts
+  - base::packages
