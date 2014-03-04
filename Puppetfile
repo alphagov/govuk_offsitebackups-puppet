@@ -6,5 +6,7 @@ mod 'attachmentgenie/ufw', '~> 1.1.0'
 mod 'attachmentgenie/ssh', '~> 1.1.1'
 mod 'blom/rssh'
 
+mod 'ext4mount',
+  :git  =>  'git://github.com/alphagov/puppet-ext4mount.git'
 mod 'lvm',
   :git  =>  'git://github.com/alphagov/puppetlabs-lvm.git'
