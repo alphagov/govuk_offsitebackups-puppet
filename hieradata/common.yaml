@@ -1,6 +1,8 @@
 ---
 classes:
   - gds_accounts
+  - base::mounts
+  - base::user
 
 gds_accounts::groups:
   - gds
@@ -35,12 +37,6 @@ gds_accounts::accounts:
   dcarley:
     comment: Dan Carley
     ssh_key: AAAAB3NzaC1yc2EAAAADAQABAAABAQCd6wN5MjI+l8Ggjf5xhHT44L9LIGDR2dS65ovQcQ9VSTfnP3CMaF25ZyWsJ89Gu5UoO1BEbzkftMzFTjGAdWDFZ81QAl+3GGy2h3iQXtGvCKuC4Bl+OoaOQ0JuHySNXsMT/EyhzNHZN9SDPIOh7d/OERSYgO4RMSXv3SkYdD+18VSK9cztwloJYfs/2J1fYe+O4uGQd3NiGyiDvpIdR+bIn3Ct6T3Q/FgVXwrtbs9jxWw/LKAP6jYtwxdU4a8WcuijUS5oijW3iNKPMXwkxGJAH+J6fFbcAePfoheiehcbpa6dkshRWh2qG2px+T5V3HL7QVm70c2BTb/iA2MZOKop
-  govuk_backup:
-    comment: GOV.UK Backup User
-    shell: /usr/bin/rssh
-    create_group: true
-    groups: []
-    ssh_key: AAAAB3NzaC1yc2EAAAADAQABAAAAgQDM1YJkjk/n9JaiepLnDNqB3yBR7gNUITz3EenyRoNy1udi4MVr3m4FFbYEWGCMvyjF/rLdvZT7rE1cRQfDHn0VQcB9+eO7jjaCtk5nz/+mDrtQq+dWWidg2R4cBfnDmyY/JP44ZkKx/TcXzILBRfOuAE3JfYbcgXScl95OmeOdyw==
   heathd:
     comment: David Heath
     ssh_key: AAAAB3NzaC1yc2EAAAABIwAAAQEAu0C17mT+R1TMyAA3E7EUEH38lYsnFqqgtFjJPpC44IL6Nt7AQbhr5FNGwgA/UubyoXPdhP89fvY4pYJ5CHvly1x4w0N2bmDCXCqIbuueTi6pbhj4/z/DbUfxOpLmXJrk7t3LDVAj5mbqN40dDbD+3+jYwjWOAavqUQ0YKoEH63EQV8L6lM2ukC4tF2MVToFqMVrdsMYuk6kXDyEYwpfw8cuwn8sBbnbNerKOpt/OL/i/D4dL97vUn7GL1PM+YVh6vavpxOfwanKCmRtwvncmyPQMY4whJiBBVRawF8WkukbgFsr72Cwnwjkm1JHjLHwRsuKhMU6RB/8JFj1i22+pqQ==
@@ -74,3 +70,5 @@ gds_accounts::accounts:
   ssharpe:
     comment: Sam Sharpe
     ssh_key: AAAAB3NzaC1yc2EAAAABIwAAAQEAyNoMftFLf3w0NOW7J0KUwOx9897CU352n3zKD3p/GCcdH4eMv1QI0BhjItZplWG8TzFSBfWOOSruRh1Gksa1l1jiQcisEio6Wr7kZ7bpvMMA45ZoaDc26HTB+r0BZkNn7Lwwxxvy+1pbqStnnKzb9OTYIyVkb495LS0x1EL/P9S/NWtpm8ZULa1JDplYMA5SqMZnhmlGAXdh8UnjdcdOgOm2ngA+geJBSzVbABECiIAklHU1PRzOtrq8SuO8JmXW6NkuL0aabdTgE6noIm+Nn7T5ufZpOpIGYimVI8+mu+efcBzAp5Q0vTRgSBLfggdczZbFfPXpIt1Ib+LEf+Cuqw==
+
+base::user::ssh_key: AAAAB3NzaC1yc2EAAAADAQABAAAAgQDM1YJkjk/n9JaiepLnDNqB3yBR7gNUITz3EenyRoNy1udi4MVr3m4FFbYEWGCMvyjF/rLdvZT7rE1cRQfDHn0VQcB9+eO7jjaCtk5nz/+mDrtQq+dWWidg2R4cBfnDmyY/JP44ZkKx/TcXzILBRfOuAE3JfYbcgXScl98OmeOdyw==
