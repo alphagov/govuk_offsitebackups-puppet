@@ -3,6 +3,15 @@ FORGE
   specs:
     puppetlabs/stdlib (3.2.0)
 
+GIT
+  remote: git://github.com/alphagov/puppet-clamav.git
+  ref: master
+  sha: 31af4f0c2753dd25bca3dd0c7cc69d273c4d640d
+  specs:
+    clamav (0.0.1)
+      puppetlabs/stdlib (>= 3.0.0)
+
 DEPENDENCIES
+  clamav (>= 0)
   puppetlabs/stdlib (~> 3.0)
 
