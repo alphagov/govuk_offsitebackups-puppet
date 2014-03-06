@@ -9,6 +9,12 @@ FORGE
     blom/rssh (0.0.3)
     puppetlabs/apt (1.4.2)
       puppetlabs/stdlib (>= 2.2.1)
+    attachmentgenie/ssh (1.1.2)
+      puppetlabs/stdlib (>= 2.2.1)
+    attachmentgenie/ufw (1.4.7)
+      puppetlabs/stdlib (>= 2.2.1)
+    blom/rssh (0.0.3)
+    puppetlabs/stdlib (3.2.1)
 
 GIT
   remote: git://github.com/alphagov/puppet-clamav.git
@@ -24,10 +30,6 @@ GIT
   sha: d97f99cc2801b83152b905d1285fa34e689cb499
   specs:
     ext4mount (0.0.1)
-    blom/rssh (0.0.3)
-    attachmentgenie/ssh (1.1.2)
-      puppetlabs/stdlib (>= 2.2.1)
-    puppetlabs/stdlib (3.2.0)
 
 GIT
   remote: git://github.com/alphagov/puppet-gds_accounts.git
@@ -54,16 +56,13 @@ GIT
 
 DEPENDENCIES
   clamav (>= 0)
+  attachmentgenie/ssh (~> 1.1.1)
+  attachmentgenie/ufw (>= 0)
   blom/rssh (>= 0)
   ext4mount (>= 0)
   gds_accounts (>= 0)
   harden (>= 0)
   lvm (>= 0)
-<<<<<<< HEAD
   puppetlabs/apt (~> 1.4.2)
-=======
   blom/rssh (>= 0)
-  attachmentgenie/ssh (~> 1.1.1)
->>>>>>> Add SSH class to Hiera
   puppetlabs/stdlib (~> 3.0)
-

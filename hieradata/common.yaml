@@ -9,6 +9,7 @@ classes:
   - clamav
   - harden
   - ssh::server
+  - ufw
 
 gds_accounts::groups:
   - gds
@@ -80,3 +81,8 @@ gds_accounts::accounts:
 apt::unattended_upgrades::mail_to: 'machine.email@digital.cabinet-office.gov.uk'
 
 base::user::ssh_key: AAAAB3NzaC1yc2EAAAADAQABAAAAgQDM1YJkjk/n9JaiepLnDNqB3yBR7gNUITz3EenyRoNy1udi4MVr3m4FFbYEWGCMvyjF/rLdvZT7rE1cRQfDHn0VQcB9+eO7jjaCtk5nz/+mDrtQq+dWWidg2R4cBfnDmyY/JP44ZkKx/TcXzILBRfOuAE3JfYbcgXScl98OmeOdyw==
+
+ufw::allows:
+  ssh:
+    port: 22
+    ip: any
