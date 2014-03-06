@@ -6,6 +6,7 @@ classes:
   - base::mounts
   - base::user
   - clamav
+  - harden
 
 gds_accounts::groups:
   - gds
