@@ -6,9 +6,9 @@ FORGE
 FORGE
   remote: http://forge.puppetlabs.com/
   specs:
+    blom/rssh (0.0.3)
     puppetlabs/apt (1.4.2)
       puppetlabs/stdlib (>= 2.2.1)
-    puppetlabs/stdlib (3.2.1)
 
 GIT
   remote: git://github.com/alphagov/puppet-clamav.git
@@ -24,6 +24,7 @@ GIT
   sha: d97f99cc2801b83152b905d1285fa34e689cb499
   specs:
     ext4mount (0.0.1)
+    puppetlabs/stdlib (3.2.0)
 
 GIT
   remote: git://github.com/alphagov/puppet-gds_accounts.git
@@ -50,6 +51,7 @@ GIT
 
 DEPENDENCIES
   clamav (>= 0)
+  blom/rssh (>= 0)
   ext4mount (>= 0)
   gds_accounts (>= 0)
   harden (>= 0)

@@ -2,6 +2,7 @@ forge 'http://forge.puppetlabs.com/'
 
 mod 'puppetlabs/stdlib', '~> 3.0'
 mod 'puppetlabs/apt', '~> 1.4.2'
+mod 'blom/rssh'
 
 mod 'gds_accounts',
   :git => 'git://github.com/alphagov/puppet-gds_accounts.git',
