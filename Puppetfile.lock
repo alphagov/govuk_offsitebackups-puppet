@@ -35,6 +35,13 @@ GIT
       torrancew/account (= 0.0.5)
 
 GIT
+  remote: git://github.com/alphagov/puppet-harden.git
+  ref: master
+  sha: d21d7e4581f76321c207493f20d4992e5a78bcae
+  specs:
+    harden (0.0.1)
+
+GIT
   remote: git://github.com/alphagov/puppetlabs-lvm.git
   ref: master
   sha: 2082a276093c96e67a676f0c6076c0841f918a17
@@ -45,6 +52,7 @@ DEPENDENCIES
   clamav (>= 0)
   ext4mount (>= 0)
   gds_accounts (>= 0)
+  harden (>= 0)
   lvm (>= 0)
   puppetlabs/apt (~> 1.4.2)
   puppetlabs/stdlib (~> 3.0)
