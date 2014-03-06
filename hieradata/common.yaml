@@ -8,6 +8,7 @@ classes:
   - base::user
   - clamav
   - harden
+  - ssh::server
 
 gds_accounts::groups:
   - gds

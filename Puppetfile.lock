@@ -24,6 +24,9 @@ GIT
   sha: d97f99cc2801b83152b905d1285fa34e689cb499
   specs:
     ext4mount (0.0.1)
+    blom/rssh (0.0.3)
+    attachmentgenie/ssh (1.1.2)
+      puppetlabs/stdlib (>= 2.2.1)
     puppetlabs/stdlib (3.2.0)
 
 GIT
@@ -56,6 +59,11 @@ DEPENDENCIES
   gds_accounts (>= 0)
   harden (>= 0)
   lvm (>= 0)
+<<<<<<< HEAD
   puppetlabs/apt (~> 1.4.2)
+=======
+  blom/rssh (>= 0)
+  attachmentgenie/ssh (~> 1.1.1)
+>>>>>>> Add SSH class to Hiera
   puppetlabs/stdlib (~> 3.0)
 
