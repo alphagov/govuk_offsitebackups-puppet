@@ -1,0 +1,3 @@
+class { 'rssh':
+  allow => ['rsync'],
+}
