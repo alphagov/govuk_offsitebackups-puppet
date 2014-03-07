@@ -1,8 +1,23 @@
 FORGE
+  remote: http://forge.puppetlabs.com
+  specs:
+    torrancew/account (0.0.5)
+
+FORGE
   remote: http://forge.puppetlabs.com/
   specs:
     puppetlabs/stdlib (3.2.0)
 
+GIT
+  remote: git://github.com/alphagov/puppet-gds_accounts.git
+  ref: v1.0.0
+  sha: 4d7cc1f4807e66377abdf96ae35445facfd97c7a
+  specs:
+    gds_accounts (1.0.0)
+      puppetlabs/stdlib (>= 3.0.0)
+      torrancew/account (= 0.0.5)
+
 DEPENDENCIES
+  gds_accounts (>= 0)
   puppetlabs/stdlib (~> 3.0)
 
