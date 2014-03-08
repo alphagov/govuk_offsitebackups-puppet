@@ -1,8 +1,10 @@
 FORGE
   remote: http://forge.puppetlabs.com/
   specs:
+    blom/rssh (0.0.3)
     puppetlabs/stdlib (3.2.0)
 
 DEPENDENCIES
+  blom/rssh (>= 0)
   puppetlabs/stdlib (~> 3.0)
 
