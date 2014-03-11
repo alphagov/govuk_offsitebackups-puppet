@@ -6,6 +6,8 @@ FORGE
 FORGE
   remote: http://forge.puppetlabs.com/
   specs:
+    puppetlabs/apt (1.4.2)
+      puppetlabs/stdlib (>= 2.2.1)
     puppetlabs/stdlib (3.2.1)
 
 GIT
@@ -35,5 +37,6 @@ DEPENDENCIES
   ext4mount (>= 0)
   gds_accounts (>= 0)
   lvm (>= 0)
+  puppetlabs/apt (~> 1.4.2)
   puppetlabs/stdlib (~> 3.0)
 
