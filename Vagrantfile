@@ -1,10 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+VagrantfilePath = File.expand_path(File.dirname(__FILE__))
+
 nodes = {
   'obnode0' => {:ip => '172.16.10.10', :memory => 512},
-  'obnode1' => {:ip => '172.16.10.11'},
-  'obnode2' => {:ip => '172.16.10.12'},
 }
 node_defaults = {
   :domain => 'internal',
@@ -43,7 +43,14 @@ Vagrant.configure("2") do |config|
         # Isolate guests from host networking.
         modifyvm_args << "--natdnsproxy1" << "on"
         modifyvm_args << "--natdnshostresolver1" << "on"
+
+        file_to_disk = File.join(VagrantfilePath, "#{node_name}_extradisc.vdi")
+
         vb.customize(modifyvm_args)
+        vb.customize(['createhd', '--filename', file_to_disk, '--size', 51200,  "--format", "vdi"])
+        vb.customize(['storageattach', :id, '--storagectl','SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', file_to_disk])
+
+
       end
     end
   end

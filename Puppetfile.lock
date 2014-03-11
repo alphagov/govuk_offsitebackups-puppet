@@ -6,7 +6,14 @@ FORGE
 FORGE
   remote: http://forge.puppetlabs.com/
   specs:
-    puppetlabs/stdlib (3.2.0)
+    puppetlabs/stdlib (3.2.1)
+
+GIT
+  remote: git://github.com/alphagov/puppet-ext4mount.git
+  ref: master
+  sha: d97f99cc2801b83152b905d1285fa34e689cb499
+  specs:
+    ext4mount (0.0.1)
 
 GIT
   remote: git://github.com/alphagov/puppet-gds_accounts.git
@@ -17,7 +24,16 @@ GIT
       puppetlabs/stdlib (>= 3.0.0)
       torrancew/account (= 0.0.5)
 
+GIT
+  remote: git://github.com/alphagov/puppetlabs-lvm.git
+  ref: master
+  sha: 2082a276093c96e67a676f0c6076c0841f918a17
+  specs:
+    lvm (0.1.2)
+
 DEPENDENCIES
+  ext4mount (>= 0)
   gds_accounts (>= 0)
+  lvm (>= 0)
   puppetlabs/stdlib (~> 3.0)
 
