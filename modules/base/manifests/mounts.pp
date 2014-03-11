@@ -14,6 +14,11 @@ class base::mounts {
         owner  =>   'govuk-backup',
     }
 
+    file { '/srv/infected':
+        ensure =>   directory,
+        owner  =>   'govuk-backup',
+    }
+
     lvm::volume { 'data':
         ensure  =>  present,
         pv      =>  '/dev/sdb',
