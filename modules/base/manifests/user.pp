@@ -13,4 +13,11 @@ class base::user (
     groups       => [],
     ssh_key      => $ssh_key,
   }
+
+  file { '/etc/rssh.conf':
+    source  => 'puppet:///modules/base/etc/rssh.conf',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+  }
 }
