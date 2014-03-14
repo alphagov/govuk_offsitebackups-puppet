@@ -1,0 +1,9 @@
+/var/log/clamav/clamdscan.log {
+  daily                   # Set rotation interval to daily
+  rotate 7                # Keep prior seven days' of logs
+  compress                # Compress logs with gzip
+  delaycompress           # Delay compression until next rotation
+  missingok               # Don't halt on error
+  notifempty              # Avoid log rotation if the file is empty
+  create 644 root root    # Create a new file after rotation
+}

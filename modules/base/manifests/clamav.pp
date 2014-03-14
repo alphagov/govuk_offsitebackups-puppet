@@ -18,6 +18,14 @@ class base::clamav {
     mode    => '0755',
   }
 
+  file { '/etc/logrotate.d/clamdscan':
+    require => Package['clamav-daemon'],
+    source  => 'puppet:///modules/base/etc/logrotate.d/clamdscan',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+  }
+
   cron { 'clamscan-backup-data':
     command => '/usr/local/sbin/scan-backup-data.sh',
     minute  => fqdn_rand(60),
