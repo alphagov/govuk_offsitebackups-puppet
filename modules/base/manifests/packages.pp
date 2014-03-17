@@ -8,7 +8,6 @@ class base::packages {
     [
         'ack-grep',
         'bzip2',
-        'rssh',
         'tar'
     ]:
     ensure => installed,
