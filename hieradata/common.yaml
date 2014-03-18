@@ -2,8 +2,10 @@
 classes:
   - gds_accounts
   - apt::unattended_upgrades
+  - base::clamav
   - base::mounts
   - base::user
+  - clamav
 
 gds_accounts::groups:
   - gds
