@@ -1,0 +1,20 @@
+---
+vapps:
+- name: offsite-backup-1
+  vdc_name: 0e7t-IS-OVDC-BACKUP
+  catalog: ubuntu
+  catalog_item: preseeded-530fc1d0
+  vm:
+    hardware_config:
+      memory: '2048'
+      cpu: '2'
+    network_connections:
+    - name: 0E7T-IS-ISOLATED-002
+      ip_address: 192.168.0.10
+    extra_disks:
+    - name: backup-disk
+      size: 51200
+    bootstrap:
+      script_path: 'bootstrap_preamble.erb'
+      vars:
+        pass_hash: $5$9GVbIKsPwN/apg$CIR5MBCmzsXE2MOnqwaFvrkJ3bVH1U0G2AShxlfewF.
