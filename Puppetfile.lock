@@ -54,14 +54,14 @@ GIT
     lvm (0.1.2)
 
 DEPENDENCIES
-  clamav (>= 0)
   attachmentgenie/ssh (~> 1.1.1)
   attachmentgenie/ufw (>= 0)
   blom/rssh (>= 0)
+  clamav (>= 0)
   ext4mount (>= 0)
   gds_accounts (>= 0)
   harden (>= 0)
   lvm (>= 0)
   puppetlabs/apt (~> 1.4.2)
-  blom/rssh (>= 0)
   puppetlabs/stdlib (~> 3.0)
+
