@@ -13,4 +13,5 @@ class base::user (
     groups       => [],
     ssh_key      => $ssh_key,
   }
+
 }
