@@ -95,3 +95,6 @@ ufw::allows:
   ssh:
     port: 22
     ip: any
+  nrpe:
+    port: 5666
+    ip: any
