@@ -8,6 +8,7 @@ classes:
   - base::user
   - clamav
   - harden
+  - nrpe
   - rssh
   - ssh::server
   - ufw
