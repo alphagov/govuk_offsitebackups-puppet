@@ -17,3 +17,5 @@ mod 'clamav',
   :git  => 'git://github.com/alphagov/puppet-clamav.git'
 mod 'harden',
     :git => 'git://github.com/alphagov/puppet-harden.git'
+mod 'sudo',
+    :git => 'git://github.com/alphagov/puppet-sudo.git'

@@ -11,6 +11,7 @@ classes:
   - rssh
   - ssh::server
   - ufw
+  - sudo
 
 gds_accounts::groups:
   - gds
