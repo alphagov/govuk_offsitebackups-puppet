@@ -32,7 +32,6 @@ def development():
 @task
 def deploy():
     tempdir = puppet_package()
-#    puppet_merge_hieradata(tempdir)
     puppet_transfer(tempdir)
     puppet_run()
 
@@ -54,18 +53,6 @@ def puppet_package():
         local('git clean -ffdx --exclude "vendor"')
 
     return tempdir
-
-@runs_once
-def puppet_merge_hieradata(tempdir):
-    for file_name in glob.glob("./hieradata/*.yaml"):
-      src = file_name
-      dest = os.path.join(tempdir, file_name)
-      print src, dest
-      if os.path.exists(src) and os.path.exists(dest):
-          # We don't want to potentially overwrite all the hieradata, so to avoid
-          # confusion this aborts the whole deploy.
-          abort('%s is present in deployment and puppet repos' % file_name)
-      shutil.copyfile(src, dest)
 
 def puppet_transfer(tempdir):
     sudo('which rsync || apt-get install -qq rsync')
