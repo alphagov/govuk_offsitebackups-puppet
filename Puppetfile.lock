@@ -47,6 +47,14 @@ GIT
     harden (0.0.1)
 
 GIT
+  remote: git://github.com/alphagov/puppet-sudo.git
+  ref: master
+  sha: 62b93dacbf49ac82022e52ef7046c467f1c21cf5
+  specs:
+    sudo (3.0.1)
+      puppetlabs/stdlib (>= 2.3.0)
+
+GIT
   remote: git://github.com/alphagov/puppetlabs-lvm.git
   ref: master
   sha: 2082a276093c96e67a676f0c6076c0841f918a17
@@ -64,4 +72,5 @@ DEPENDENCIES
   lvm (>= 0)
   puppetlabs/apt (~> 1.4.2)
   puppetlabs/stdlib (~> 3.0)
+  sudo (>= 0)
 
