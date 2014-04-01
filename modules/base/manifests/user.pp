@@ -14,7 +14,7 @@ class base::user (
     ssh_key      => $ssh_key,
   }
 
-  sudo { 'sudo_nopasswd':
+  sudo::conf { 'sudo_nopasswd':
     priority     => 10,
     content      => '%sudo ALL=(ALL) NOPASSWD: ALL',
   }
