@@ -14,15 +14,9 @@ if [ $1 = "postcustomization" ]; then
   echo "nameserver 8.8.8.8" >$R
   echo "nameserver 8.8.4.4" >>$R
   
-  U="hkp://keyserver.ubuntu.com:80"
-  REPO="/etc/apt/sources.list.d/gds-govuk-precise.list"
-  GDSPPA="http://ppa.launchpad.net/gds/govuk/ubuntu"
   sed -i '/^deb cdrom/d' /etc/apt/sources.list
   wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
   dpkg -i puppetlabs-release-precise.deb
-  echo "deb $GDSPPA precise main" >> $REPO
-  echo "deb-src $GDSPPA precise main" >> $REPO
-  apt-key adv --keyserver $U --recv-keys '914D5813'
   apt-get update
   
   export PATH=$PATH:/usr/local/bin
