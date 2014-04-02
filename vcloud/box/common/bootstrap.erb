@@ -22,8 +22,6 @@ if [ $1 = "postcustomization" ]; then
   dpkg -i puppetlabs-release-precise.deb
   echo "deb $GDSPPA precise main" >> $REPO
   echo "deb-src $GDSPPA precise main" >> $REPO
-  echo "deb http://gds-packages.s3-website-us-east-1.amazonaws.com current main" >> /etc/apt/sources.list.d/gds.list
-  apt-key adv --keyserver $U --recv-keys '24B253BC'
   apt-key adv --keyserver $U --recv-keys '914D5813'
   apt-get update
   
