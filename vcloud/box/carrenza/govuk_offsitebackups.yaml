@@ -13,7 +13,7 @@ vapps:
       ip_address: '192.168.152.10'
     extra_disks:
     - name: backup-disk
-      size: 51200
+      size: 307200
     bootstrap:
         script_path: 'vcloud/box/common/bootstrap.erb'
         vars:
