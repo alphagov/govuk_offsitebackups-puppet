@@ -28,6 +28,5 @@ if [ $1 = "postcustomization" ]; then
   export PATH=$PATH:/usr/local/bin
   apt-get -y install puppet ruby1.9.3
   service puppet stop
-  DISKS=`ls /dev/sd? | tail -n +2`
   
 fi
