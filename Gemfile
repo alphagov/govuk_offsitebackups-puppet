@@ -17,3 +17,9 @@ gem 'puppet-syntax'
 gem 'puppet-lint', '~> 0.3.0'
 gem 'rspec-puppet', '~> 0.1.0'
 gem 'puppetlabs_spec_helper', '~> 0.4.0'
+
+# vCloud tools
+gem 'vcloud-walker'
+gem 'vcloud-core'
+gem 'vcloud-edge_gateway'
+gem 'vcloud-tools', :github => 'alphagov/vcloud-tools'

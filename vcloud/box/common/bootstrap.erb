@@ -1,0 +1,35 @@
+#!/bin/bash
+
+if [ $1 = "postcustomization" ]; then
+  echo 'ubuntu:<%= vars[:pass_hash] %>' | chpasswd -e 
+  
+  dpkg-reconfigure openssh-server
+  set -e
+  exec >/var/log/userdata.log 2>&1
+  export DEBIAN_FRONTEND=noninteractive
+  E="/etc/environment"
+  echo "LC_ALL=en_GB.UTF-8" > $E
+  
+  R="/etc/resolv.conf"
+  echo "nameserver 8.8.8.8" >$R
+  echo "nameserver 8.8.4.4" >>$R
+  
+  U="hkp://keyserver.ubuntu.com:80"
+  REPO="/etc/apt/sources.list.d/gds-govuk-precise.list"
+  GDSPPA="http://ppa.launchpad.net/gds/govuk/ubuntu"
+  sed -i '/^deb cdrom/d' /etc/apt/sources.list
+  wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
+  dpkg -i puppetlabs-release-precise.deb
+  echo "deb $GDSPPA precise main" >> $REPO
+  echo "deb-src $GDSPPA precise main" >> $REPO
+  echo "deb http://gds-packages.s3-website-us-east-1.amazonaws.com current main" >> /etc/apt/sources.list.d/gds.list
+  apt-key adv --keyserver $U --recv-keys '24B253BC'
+  apt-key adv --keyserver $U --recv-keys '914D5813'
+  apt-get update
+  
+  export PATH=$PATH:/usr/local/bin
+  apt-get -y install puppet ruby1.9.3
+  service puppet stop
+  DISKS=`ls /dev/sd? | tail -n +2`
+  
+fi

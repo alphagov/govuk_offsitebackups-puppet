@@ -1,0 +1,46 @@
+gateway: 0E7T-IS-GATEWAY-002
+firewall_service:
+  enabled: true
+  policy: drop
+  firewall_rules:
+    - description: "Outbound"
+      protocols: any
+      destination_ip: "external"
+      source_ip: "internal"
+    - description: "Public ICMP access to backup network"
+      protocols: icmp
+      destination_ip: "31.210.241.201"
+      source_ip: Any
+    - description: "SSH access from Aviation House .90"
+      protocols: tcp
+      destination_ip: "31.210.241.201"
+      source_ip: "80.194.77.90"
+      destination_port_range: "22"
+    - description: "SSH access from Aviation House .100"
+      protocols: tcp
+      destination_ip: "31.210.241.201"
+      source_ip: "80.194.77.100"
+      destination_port_range: "22"
+    - description: "SSH access from interim production"
+      protocols: tcp
+      destination_ip: "31.210.241.201"
+      source_ip: "217.171.99.70"
+      destination_port_range: "22"
+    - description: "SSH access from P1 production"
+      protocols: tcp
+      destination_ip: "31.210.241.201"
+      source_ip: "37.26.90.227"
+      destination_port_range: "22"
+nat_service:
+  enabled: true
+  nat_rules:
+  - rule_type: 'SNAT'
+    network_id: '5d4ab16b-df39-4f81-9a68-c7cf2bec6bb4'
+    original_ip: "192.168.152.0/24"
+    translated_ip: "31.210.241.201"
+  - rule_type: 'DNAT'
+    network_id: '5d4ab16b-df39-4f81-9a68-c7cf2bec6bb4'
+    original_ip: "31.210.241.201"
+    original_port: "22"
+    translated_ip: "192.168.152.10"
+    translated_port: "22"
