@@ -92,6 +92,11 @@ nrpe::allowed_hosts:
   - 127.0.0.1
   - 37.26.90.227
 
+nrpe::commands:
+  check_disk:
+    ensure  => present
+    command => 'check_disk -w 20% -c 10% /srv/backup-data'
+
 rssh::allow:
   - scp
 

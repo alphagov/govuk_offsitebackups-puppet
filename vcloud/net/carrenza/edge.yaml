@@ -36,7 +36,7 @@ firewall_service:
       destination_ip: "31.210.241.201"
       source_ip: "78.31.106.101"
       destination_port_range: "22"
-    - description: "NRPE access from monitoring-1.management" 
+    - description: "NRPE access from monitoring-1.management.production" 
       protocols: tcp
       destination_ip: "31.210.241.201"
       source_ip: "37.26.90.227"
