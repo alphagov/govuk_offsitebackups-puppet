@@ -1,6 +1,47 @@
 # GOV.UK Off-site Backups
 
-This is a repository for storing Puppet modules and manifests for use with GOV.UK off-site backups.
+This repository contains packages and configuration in order to create an
+off-site back-up machine for GOV.UK. At a high level, it encompasses:
+
+- [alphagov/puppet-clamav](https://github.com/alphagov/puppet-clamav)
+- [alphagov/puppet-ext4mount](https://github.com/alphagov/puppet-ext4mount)
+- [alphagov/puppet-gds_accounts](https://github.com/alphagov/puppet-gds_accounts)
+- [alphagov/puppet-harden](https://github.com/alphagov/puppet-harden)
+- [alphagov/puppet-lvm](https://github.com/alphagov/puppet-lvm)
+- [alphagov/puppet-sudo](https://github.com/alphagov/puppet-sudo)
+- [attachmentgenie/ssh](https://github.com/attachmentgenie/puppet-module-ssh)
+- [attachmentgenie/ufw](https://github.com/attachmentgenie/puppet-module-ufw)
+- [blom/rssh](https://github.com/blom/puppet-rssh)
+- [puppetlabs/apt](https://forge.puppetlabs.com/puppetlabs/apt)
+
+Hiera is used as a lightweight ENC, therefore the vast majority of
+configuration can be found in `hieradata/common.yaml`.
+
+## Testing
+
+You can use [Vagrant](http://vagrantup.com) to run this repository locally.
+This is especially useful for testing changes that you make to the
+repository.
+
+Vagrant configuration is stored in the
+[`Vagrantfile`](https://github.com/alphagov/govuk_offsitebackups-puppet/blob/master/Vagrantfile)
+in the root of this repository. It contains configuration to launch one
+virtual machine - named `obnode0` - which responds on 172.16.10.10. This VM
+is given 512mb of RAM, and is configured to run under Oracle VirtualBox.
+
+To test changes made to this repository, first ensure that you have Vagrant
+installed, and then:
+
+1. Run `vagrant up` from the root of this repository
+2. When the box has booted successfully, run `vagrant ssh obnode0` to SSH to
+the guest
+
+The machine always builds against the current branch of the repository.
+Thus, if you branch from master, make a change, then bring the Vagrant VM
+up, your changes should be reflected. It is best to `vagrant destroy` your
+virtual machine (to destroy it) if you wish to make another change, unless
+it is trivial - in which case you can run `vagrant provision obnode0` to
+re-run Puppet against it.
 
 ## Deployment
 
