@@ -28,6 +28,8 @@ Vagrant configuration is stored in the
 in the root of this repository. It contains configuration to launch one
 virtual machine - named `obnode0` - which responds on 172.16.10.10. This VM
 is given 512mb of RAM, and is configured to run under Oracle VirtualBox.
+Vagrant supports other providers, such as VMware Fusion, however we can only
+vouch for support for the Oracle VirtualBox provider at this stage.
 
 To test changes made to this repository, first ensure that you have Vagrant
 installed, and then:
