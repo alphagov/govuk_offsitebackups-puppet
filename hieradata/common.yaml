@@ -3,6 +3,7 @@ classes:
   - base::packages
   - gds_accounts
   - apt::unattended_upgrades
+  - base::rotate
   - base::clamav
   - base::mounts
   - base::user
