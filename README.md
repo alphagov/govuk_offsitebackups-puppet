@@ -64,6 +64,13 @@ to run successfully.
 If it's not the first time you are applying this repository to a machine, you
 can run:
 
-`fab -u ubuntu -c /dev/null production deploy`
+`fab -c /dev/null production deploy`
 
-The deployment process should take approximately fifteen to twenty minutes.
+The `-u` switch can be used, along with a username, to specify your username
+on the remote back-up machine if this differs from your local username, as
+follows:
+
+`fab -u {username} -c /dev/null production deploy`
+
+
+
