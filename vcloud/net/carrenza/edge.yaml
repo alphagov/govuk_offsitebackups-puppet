@@ -31,6 +31,11 @@ firewall_service:
       destination_ip: "31.210.241.201"
       source_ip: "37.26.90.227"
       destination_port_range: "22"
+    - description: "SSH access from offsite-backup.production"
+      protocols: tcp
+      destination_ip: "31.210.241.201"
+      source_ip: "78.31.106.101"
+      destination_port_range: "22"
 nat_service:
   enabled: true
   nat_rules:
