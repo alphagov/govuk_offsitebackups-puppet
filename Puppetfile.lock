@@ -16,14 +16,6 @@ FORGE
     puppetlabs/stdlib (3.2.1)
 
 GIT
-  remote: git://github.com/alphagov/puppet-clamav.git
-  ref: master
-  sha: 8a60f4d537cd4e63bad0332daeabbc866f1fb7ff
-  specs:
-    clamav (0.0.2)
-      puppetlabs/stdlib (>= 3.0.0)
-
-GIT
   remote: git://github.com/alphagov/puppet-ext4mount.git
   ref: master
   sha: d97f99cc2801b83152b905d1285fa34e689cb499
@@ -65,7 +57,6 @@ DEPENDENCIES
   attachmentgenie/ssh (~> 1.1.1)
   attachmentgenie/ufw (>= 0)
   blom/rssh (>= 0)
-  clamav (>= 0)
   ext4mount (>= 0)
   gds_accounts (>= 0)
   harden (>= 0)

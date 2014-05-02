@@ -5,7 +5,6 @@ classes:
   - apt::unattended_upgrades
   - base::mounts
   - base::user
-  - clamav
   - harden
   - rssh
   - ssh::server
