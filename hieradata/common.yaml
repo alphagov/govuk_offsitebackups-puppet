@@ -8,6 +8,7 @@ classes:
   - base::user
   - clamav
   - harden
+  - nrpe
   - rssh
   - ssh::server
   - ufw
@@ -87,10 +88,22 @@ apt::unattended_upgrades::mail_to: 'machine.email@digital.cabinet-office.gov.uk'
 
 base::user::ssh_key: AAAAB3NzaC1yc2EAAAADAQABAAAAgQDM1YJkjk/n9JaiepLnDNqB3yBR7gNUITz3EenyRoNy1udi4MVr3m4FFbYEWGCMvyjF/rLdvZT7rE1cRQfDHn0VQcB9+eO7jjaCtk5nz/+mDrtQq+dWWidg2R4cBfnDmyY/JP44ZkKx/TcXzILBRfOuAE3JfYbcgXScl95OmeOdyw==
 
+nrpe::allowed_hosts:
+  - 127.0.0.1
+  - 37.26.90.227
+
+nrpe::commands:
+  check_disk:
+    ensure  => present
+    command => 'check_disk -w 20% -c 10% /srv/backup-data'
+
 rssh::allow:
   - scp
 
 ufw::allows:
   ssh:
     port: 22
+    ip: any
+  nrpe:
+    port: 5666
     ip: any
