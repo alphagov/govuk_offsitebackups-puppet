@@ -5,8 +5,17 @@
 # is removed after thirty days.
 
 class base::rotate {
+
+  file { '/usr/local/sbin/rotate-tarballs.sh':
+    source  => 'puppet:///modules/base/usr/local/sbin/rotate-tarballs.sh',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+  }
+
   cron { 'rotate_old_backups':
-    command => './usr/sbin/rotate-tarballs.sh',
+    require => File['/usr/local/sbin/rotate-tarballs.sh'],
+    command => '/usr/local/sbin/rotate-tarballs.sh',
     user    => 'govuk-backup',
     hour    => 09,
     minute  => 00,
