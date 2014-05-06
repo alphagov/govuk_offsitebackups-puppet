@@ -6,7 +6,7 @@
 
 class base::rotate {
   cron { 'rotate_old_backups':
-    command => 'find /srv/backup-data -type f -mtime +30 -delete',
+    command => 'find /srv/backup-data -not \( -path /srv/backup-data/lost+found prune \) -type f -mtime +30 -delete',
     user    => 'govuk-backup',
     hour    => 09,
     minute  => 00,
