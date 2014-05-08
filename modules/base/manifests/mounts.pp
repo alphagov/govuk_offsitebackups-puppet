@@ -28,4 +28,22 @@ class base::mounts {
         require       =>  Lvm::Volume['data'],
     }
 
+    file { '/srv/logs-backup':
+        ensure =>   directory,
+        owner  =>   'transition-logs-backup',
+    }
+
+    lvm::volume { 'backup':
+        ensure  =>  present,
+        pv      =>  '/dev/sdc',
+        vg      =>  'logs',
+        fstype  =>  'ext4',
+    }
+
+    ext4mount { '/srv/logs-backup':
+        mountoptions  =>  'defaults',
+        disk          =>  '/dev/mapper/logs-backup',
+        before        =>  File['/srv/logs-backup'],
+        require       =>  Lvm::Volume['backup'],
+    }
 }

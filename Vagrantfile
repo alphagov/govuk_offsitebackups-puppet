@@ -44,12 +44,15 @@ Vagrant.configure("2") do |config|
         modifyvm_args << "--natdnsproxy1" << "on"
         modifyvm_args << "--natdnshostresolver1" << "on"
 
-        file_to_disk = File.join(VagrantfilePath, "#{node_name}_extradisc.vdi")
+        file_to_disk_1 = File.join(VagrantfilePath, "#{node_name}_extradisc_1.vdi")
+        file_to_disk_2 = File.join(VagrantfilePath, "#{node_name}_extradisc_2.vdi")
 
         vb.customize(modifyvm_args)
-        vb.customize(['createhd', '--filename', file_to_disk, '--size', 51200,  "--format", "vdi"])
-        vb.customize(['storageattach', :id, '--storagectl','SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', file_to_disk])
+        vb.customize(['createhd', '--filename', file_to_disk_1, '--size', 51200,  "--format", "vdi"])
+        vb.customize(['storageattach', :id, '--storagectl','SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', file_to_disk_1])
 
+        vb.customize(['createhd', '--filename', file_to_disk_2, '--size', 51200,  "--format", "vdi"])
+        vb.customize(['storageattach', :id, '--storagectl','SATA Controller', '--port', 2, '--device', 0, '--type', 'hdd', '--medium', file_to_disk_2])
 
       end
     end
