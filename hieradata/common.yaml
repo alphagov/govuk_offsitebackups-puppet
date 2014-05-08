@@ -9,6 +9,7 @@ classes:
   - clamav
   - harden
   - nrpe
+  - resolvconf
   - rssh
   - ssh::server
   - ufw
@@ -97,6 +98,11 @@ nrpe::commands:
   check_disk:
     ensure  => present
     command => 'check_disk -w 20% -c 10% /srv/backup-data'
+
+# Carrenza nameservers.
+resolvconf::nameservers:
+  - 195.225.219.96
+  - 195.225.219.97
 
 rssh::allow:
   - scp
