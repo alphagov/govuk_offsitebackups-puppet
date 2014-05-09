@@ -11,7 +11,7 @@ require 'bundler/setup'
 require 'fog'
 
 Fog.credentials = {
-  :vcloud_director_host     => 'myvdc.carrenza.net',
-  :vcloud_director_username => "#{ENV['VCLOUD_USER']}@0e7t-infrastructure-services",
+  :vcloud_director_host     => ENV['VCLOUD_HOST'],
+  :vcloud_director_username => "#{ENV['VCLOUD_USER']}@#{ENV['VCLOUD_ORG']}",
   :vcloud_director_password => ENV['VCLOUD_PASS'],
 }
