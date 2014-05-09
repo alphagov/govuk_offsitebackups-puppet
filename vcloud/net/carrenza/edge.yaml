@@ -35,7 +35,7 @@ firewall_service:
       protocols: tcp
       destination_ip: "31.210.241.201"
       source_ip: "37.26.90.227"
-      destination_port_range: 5666
+      destination_port_range: "5666"
     - description: "SSH access from transition-logs-1"
       protocols: tcp
       destination_ip: "31.210.241.201"
