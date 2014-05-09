@@ -6,6 +6,7 @@ mod 'blom/rssh'
 mod 'attachmentgenie/ssh', '~> 1.1.1'
 mod 'attachmentgenie/ufw'
 mod 'pdxcat/nrpe'
+mod 'gdsoperations/resolvconf'
 
 mod 'gds_accounts',
   :git => 'git://github.com/alphagov/puppet-gds_accounts.git',
