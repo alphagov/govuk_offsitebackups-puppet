@@ -54,3 +54,9 @@ nat_service:
     original_port: "22"
     translated_ip: "192.168.152.10"
     translated_port: "22"
+  - rule_type: 'DNAT'
+    network_id: '5d4ab16b-df39-4f81-9a68-c7cf2bec6bb4'
+    original_ip: "31.210.241.201"
+    original_port: "5666"
+    translated_ip: "192.168.152.10"
+    translated_port: "5666"
