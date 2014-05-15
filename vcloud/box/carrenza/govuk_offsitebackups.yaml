@@ -14,6 +14,8 @@ vapps:
     extra_disks:
     - name: backup-disk
       size: 307200
+    - name: logs-disk
+      size: 524288
     bootstrap:
         script_path: 'vcloud/box/common/bootstrap.erb'
         vars:
