@@ -35,9 +35,14 @@ def deploy():
     puppet_transfer(tempdir)
     puppet_run()
 
-@task
 def bodge_sudoers():
   sudo('echo "ubuntu ALL= NOPASSWD:/usr/bin/rsync" | tee -a /etc/sudoers')
+
+@task
+def firstrun():
+  env.user='ubuntu'
+  bodge_sudoers()
+  deploy()
 
 @runs_once
 def puppet_package():
