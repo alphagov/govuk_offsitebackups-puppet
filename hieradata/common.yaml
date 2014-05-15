@@ -6,6 +6,7 @@ classes:
   - base::rotate
   - base::clamav
   - base::mounts
+  - base::nrpe
   - base::user
   - clamav
   - harden
@@ -94,11 +95,6 @@ base::user::logs_ssh_key: AAAAB3NzaC1yc2EAAAADAQABAAABAQDEBXBO6UU0zkOM+RL3TTir0Z
 nrpe::allowed_hosts:
   - 127.0.0.1
   - 37.26.90.227
-
-nrpe::commands:
-  check_disk:
-    ensure  => present
-    command => 'check_disk -w 20% -c 10% /srv/backup-data'
 
 # Carrenza nameservers.
 resolvconf::nameservers:
