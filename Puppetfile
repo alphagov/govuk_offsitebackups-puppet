@@ -15,8 +15,6 @@ mod 'lvm',
   :git  =>  'git://github.com/alphagov/puppetlabs-lvm.git'
 mod 'ext4mount',
   :git  =>  'git://github.com/alphagov/puppet-ext4mount.git'
-mod 'clamav',
-  :git  => 'git://github.com/alphagov/puppet-clamav.git'
 mod 'harden',
     :git => 'git://github.com/alphagov/puppet-harden.git'
 mod 'sudo',
