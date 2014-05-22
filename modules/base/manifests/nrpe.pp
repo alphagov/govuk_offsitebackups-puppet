@@ -13,7 +13,7 @@ class base::nrpe{
         ensure  => present,
         command => 'check_disk -w 10% -c 5% /srv/logs-backup',
     }
-    nrpe::command {'check_disk_logs-backup-data':
+    nrpe::command {'check_disk_backup-data':
         ensure  => present,
         command => 'check_disk -w 10% -c 5% /srv/backup-data',
     }
