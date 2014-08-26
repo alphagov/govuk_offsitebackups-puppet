@@ -19,7 +19,4 @@ gem 'rake'
 gem 'rspec-puppet', '~> 0.1.0'
 
 # vCloud tools
-gem 'vcloud-core'
-gem 'vcloud-edge_gateway'
-gem 'vcloud-tools', :github => 'alphagov/vcloud-tools'
-gem 'vcloud-walker'
+gem 'vcloud-tools'
