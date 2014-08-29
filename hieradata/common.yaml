@@ -7,6 +7,7 @@ classes:
   - base::clamav
   - base::mounts
   - base::nrpe
+  - base::supported_kernel
   - base::user
   - clamav
   - harden
@@ -16,6 +17,8 @@ classes:
   - ssh::server
   - ufw
   - sudo
+
+base::supported_kernel::hwe_ver: 'trusty'
 
 gds_accounts::groups:
   - gds
