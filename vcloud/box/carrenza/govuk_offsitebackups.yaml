@@ -3,7 +3,7 @@ vapps:
 - name: 'offsite-backup-1'
   vdc_name: '0e7t-IS-OVDC-BACKUP'
   catalog_name: 'ubuntu'
-  vapp_template_name: 'preseeded-530fc1d0'
+  vapp_template_name: 'preseeded-540059de'
   vm:
     hardware_config:
       memory: '2048'
