@@ -46,4 +46,23 @@ class base::mounts {
         before        =>  File['/srv/logs-backup'],
         require       =>  Lvm::Volume['backup'],
     }
+
+    file { '/srv/backup-assets':
+        ensure  => directory,
+        owner   => 'govuk-backup',
+    }
+
+    lvm::volume { 'assets':
+        ensure  => present,
+        pv      => '/dev/sdd',
+        vg      => 'assetsbackup',
+        fstype  => 'ext4',
+    }
+
+    ext4mount { '/srv/assets':
+        mountoptions  => 'defaults',
+        disk          => '/dev/mapper/assetsbackup-assets',
+        before        => File['/srv/assets'],
+        require       => Lvm::Volume['assets'],
+    }
 }
