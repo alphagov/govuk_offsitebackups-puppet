@@ -59,10 +59,10 @@ class base::mounts {
         fstype  => 'ext4',
     }
 
-    ext4mount { '/srv/assets':
+    ext4mount { '/srv/backup-assets':
         mountoptions  => 'defaults',
         disk          => '/dev/mapper/assetsbackup-assets',
-        before        => File['/srv/assets'],
+        before        => File['/srv/backup-assets'],
         require       => Lvm::Volume['assets'],
     }
 }
