@@ -46,6 +46,7 @@ Vagrant.configure("2") do |config|
 
         file_to_disk_1 = File.join(VagrantfilePath, "#{node_name}_extradisc_1.vdi")
         file_to_disk_2 = File.join(VagrantfilePath, "#{node_name}_extradisc_2.vdi")
+        file_to_disk_3 = File.join(VagrantfilePath, "#{node_name}_extradisc_3.vdi")
 
         vb.customize(modifyvm_args)
         vb.customize(['createhd', '--filename', file_to_disk_1, '--size', 51200,  "--format", "vdi"])
@@ -53,6 +54,9 @@ Vagrant.configure("2") do |config|
 
         vb.customize(['createhd', '--filename', file_to_disk_2, '--size', 51200,  "--format", "vdi"])
         vb.customize(['storageattach', :id, '--storagectl','SATA Controller', '--port', 2, '--device', 0, '--type', 'hdd', '--medium', file_to_disk_2])
+
+        vb.customize(['createhd', '--filename', file_to_disk_3, '--size', 51200,  "--format", "vdi"])
+        vb.customize(['storageattach', :id, '--storagectl','SATA Controller', '--port', 3, '--device', 0, '--type', 'hdd', '--medium', file_to_disk_3])
 
       end
     end
