@@ -49,7 +49,7 @@ class base::mounts {
 
     file { '/srv/backup-assets':
         ensure  => directory,
-        owner   => 'govuk-backup',
+        owner   => 'govuk-assets',
     }
 
     lvm::volume { 'assets':
