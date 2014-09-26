@@ -52,6 +52,18 @@ class base::mounts {
         owner   => 'govuk-assets',
     }
 
+    file { '/srv/backup-assets/whitehall':
+        ensure  => directory,
+        owner   => 'govuk-assets',
+        group   => 'govuk-assets',
+    }
+
+    file { '/srv/backup-assets/asset-manager':
+        ensure  => directory,
+        owner   => 'govuk-assets',
+        group   => 'govuk-assets',
+    }
+
     lvm::volume { 'assets':
         ensure  => present,
         pv      => '/dev/sdd',
