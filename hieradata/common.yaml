@@ -106,6 +106,7 @@ resolvconf::nameservers:
   - 195.225.219.97
 
 rssh::allow:
+  - rsync
   - scp
   - sftp
 
