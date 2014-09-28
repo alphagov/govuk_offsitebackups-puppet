@@ -28,7 +28,7 @@ class base::mounts {
         require       =>  Lvm::Volume['data'],
     }
 
-    file { '/srv/logs-backup':
+    file { '/srv/backup-logs':
         ensure =>   directory,
         owner  =>   'transition-logs-backup',
     }
@@ -40,10 +40,10 @@ class base::mounts {
         fstype  =>  'ext4',
     }
 
-    ext4mount { '/srv/logs-backup':
+    ext4mount { '/srv/backup-logs':
         mountoptions  =>  'defaults',
         disk          =>  '/dev/mapper/logs-backup',
-        before        =>  File['/srv/logs-backup'],
+        before        =>  File['/srv/backup-logs'],
         require       =>  Lvm::Volume['backup'],
     }
 
