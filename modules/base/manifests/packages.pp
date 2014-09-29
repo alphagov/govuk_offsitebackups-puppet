@@ -8,7 +8,8 @@ class base::packages {
     [
         'ack-grep',
         'bzip2',
-        'tar'
+        'tar',
+        'update-notifier-common',
     ]:
     ensure => installed,
   }
