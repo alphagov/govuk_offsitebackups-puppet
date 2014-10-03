@@ -42,7 +42,7 @@ class base::mounts {
 
     ext4mount { '/srv/backup-logs':
         mountoptions  =>  'defaults',
-        disk          =>  '/dev/mapper/logs-backup',
+        disk          =>  '/dev/mapper/logsbackup-backup',
         before        =>  File['/srv/backup-logs'],
         require       =>  Lvm::Volume['backup'],
     }
