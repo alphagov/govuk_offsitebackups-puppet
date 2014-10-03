@@ -36,7 +36,7 @@ class base::mounts {
     lvm::volume { 'backup':
         ensure  =>  present,
         pv      =>  '/dev/sdc',
-        vg      =>  'logs',
+        vg      =>  'logsbackup',
         fstype  =>  'ext4',
     }
 
