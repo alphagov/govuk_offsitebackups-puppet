@@ -45,6 +45,10 @@ virtual machine (to destroy it) if you wish to make another change, unless
 it is trivial - in which case you can run `vagrant provision obnode0` to
 re-run Puppet against it.
 
+## Deployment Setup - Install Fabric (ideally in a virtualenv)
+
+    `pip install -r requirements.txt`
+
 ## Deployment
 
 If this is the first time that this repository is being applied to a machine,
