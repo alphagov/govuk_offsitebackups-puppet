@@ -77,4 +77,31 @@ class base::mounts {
         before        => File['/srv/backup-assets'],
         require       => Lvm::Volume['assets'],
     }
+
+    file { '/srv/backup-graphite':
+        ensure  => directory,
+        owner   => 'govuk-backup',
+        group   => 'govuk-backup',
+    }
+
+    lvm::volume { 'graphite':
+        ensure  => present,
+        pv      => '/dev/sde',
+        vg      => 'graphitebackup',
+        fstype  => 'ext4',
+    }
+
+    ext4mount { '/srv/backup-graphite':
+        mountoptions  => 'defaults',
+        disk          => '/dev/mapper/graphitebackup-graphite',
+        before        => File['/srv/backup-graphite'],
+        require       => Lvm::Volume['graphite'],
+    }
+
+    file { '/srv/backup-graphite/tarballs':
+        ensure  => directory,
+        owner   => 'govuk-backup',
+        group   => 'govuk-backup',
+        require => Ext4mount['/srv/backup-graphite'],
+    }
 }
