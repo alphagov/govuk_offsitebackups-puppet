@@ -18,6 +18,8 @@ vapps:
       size: 524288
     - name: assetsbackup-assets
       size: 524288
+    - name: graphitebackup-graphite
+      size: 102400
     bootstrap:
         script_path: 'vcloud/box/common/bootstrap.erb'
         vars:
