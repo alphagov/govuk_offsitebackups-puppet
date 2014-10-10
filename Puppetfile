@@ -7,6 +7,7 @@ mod 'gdsoperations/resolvconf'
 mod 'pdxcat/nrpe'
 mod 'puppetlabs/apt', '~> 1.4.2'
 mod 'puppetlabs/stdlib', '~> 3.0'
+mod 'saz/sudo', '~> 3.0.1'
 
 mod 'clamav',
   :git  => 'git://github.com/alphagov/puppet-clamav.git'
@@ -19,5 +20,3 @@ mod 'harden',
     :git => 'git://github.com/alphagov/puppet-harden.git'
 mod 'lvm',
   :git  =>  'git://github.com/alphagov/puppetlabs-lvm.git'
-mod 'sudo',
-    :git => 'git://github.com/alphagov/puppet-sudo.git'
