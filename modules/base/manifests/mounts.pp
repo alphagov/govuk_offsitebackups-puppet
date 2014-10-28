@@ -64,19 +64,35 @@ class base::mounts {
         group   => 'govuk-assets',
     }
 
-    lvm::volume { 'assets':
+    # lvm::volume { 'assets':
+    $assets_disks = [ '/dev/sdd', '/dev/sdf' ]
+    $assets_vgname = 'assetsbackup'
+    $assets_lvname = 'assets'
+    physical_volume { $assets_disks:
+        ensure => present,
+    }
+    volume_group { $assets_vgname:
+        ensure           => present,
+        physical_volumes => $assets_disks,
+        require          => [ Physical_volume['/dev/sdd'], Physical_volume['/dev/sdf']],
+    }
+    logical_volume { $assets_lvname:
+        ensure       => present,
+        volume_group => $assets_vgname,
+        require      => Volume_group[$assets_vgname],
+    }
+    filesystem { "/dev/${assets_vgname}/${assets_lvname}":
         ensure  => present,
-        pv      => ['/dev/sdd', '/dev/sdf'],
-        vg      => 'assetsbackup',
-        fstype  => 'ext4',
+        fs_type => 'ext4',
+        require => Logical_volume[$assets_lvname]
     }
-
     ext4mount { '/srv/backup-assets':
-        mountoptions  => 'defaults',
-        disk          => '/dev/mapper/assetsbackup-assets',
-        before        => File['/srv/backup-assets'],
-        require       => Lvm::Volume['assets'],
+        mountoptions => 'defaults',
+        disk         => "/dev/mapper/${assets_vgname}-${assets_lvname}",
+        before       => File['/srv/backup-assets'],
+        require      => Filesystem["/dev/${assets_vgname}/${assets_lvname}"],
     }
+    # } end lvm::volume
 
     file { '/srv/backup-graphite':
         ensure  => directory,
