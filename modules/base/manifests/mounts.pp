@@ -66,7 +66,7 @@ class base::mounts {
 
     lvm::volume { 'assets':
         ensure  => present,
-        pv      => '/dev/sdd',
+        pv      => ['/dev/sdd', '/dev/sdf'],
         vg      => 'assetsbackup',
         fstype  => 'ext4',
     }
