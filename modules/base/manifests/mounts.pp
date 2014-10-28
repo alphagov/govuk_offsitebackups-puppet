@@ -74,7 +74,8 @@ class base::mounts {
     volume_group { $assets_vgname:
         ensure           => present,
         physical_volumes => $assets_disks,
-        require          => [ Physical_volume['/dev/sdd'], Physical_volume['/dev/sdf']],
+        require          => [ Physical_volume['/dev/sdd'],
+                              Physical_volume['/dev/sdf']],
     }
     logical_volume { $assets_lvname:
         ensure       => present,
