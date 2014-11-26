@@ -9,7 +9,6 @@ classes:
   - base::nrpe
   - base::supported_kernel
   - base::user
-  - clamav
   - harden
   - nrpe
   - resolvconf

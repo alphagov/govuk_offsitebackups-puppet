@@ -9,8 +9,6 @@ mod 'puppetlabs/apt', '~> 1.4.2'
 mod 'puppetlabs/stdlib', '~> 3.0'
 mod 'saz/sudo', '~> 3.0.1'
 
-mod 'clamav',
-  :git  => 'git://github.com/alphagov/puppet-clamav.git'
 mod 'ext4mount',
   :git  =>  'git://github.com/alphagov/puppet-ext4mount.git'
 mod 'gds_accounts',
