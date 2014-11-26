@@ -1,34 +1,36 @@
 # == Class: base::clamav
 #
-# Set up virus scanning of the backup-data drive
-# After all, we don't want a virus...
+# FIXME: Remove this class once deployed.
 #
 class base::clamav {
 
+  service { ['clamav-freshclam', 'clamav-daemon']:
+    ensure   => stopped,
+    provider => base,
+  } ->
+  package { ['clamav', 'clamav-base', 'clamav-freshclam', 'clamav-daemon']:
+    ensure => purged,
+  } ->
+  file { ['/etc/clamav/clamd.conf', '/etc/clamav/freshclam.conf']:
+    ensure => absent,
+  }
+
   file { '/srv/infected':
-    ensure => directory,
-    owner  => 'govuk-backup',
+    ensure => absent,
+    force  => true,
   }
 
   file { '/usr/local/sbin/scan-backup-data.sh':
-    require => File['/srv/infected'],
-    source  => 'puppet:///modules/base/usr/local/sbin/scan-backup-data.sh',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0755',
+    ensure  => absent,
   }
 
   file { '/etc/logrotate.d/clamdscan':
-    require => Package['clamav-daemon'],
-    source  => 'puppet:///modules/base/etc/logrotate.d/clamdscan',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
+    ensure  => absent,
   }
 
   cron { 'clamscan-backup-data':
+    ensure  => absent,
     command => '/usr/local/sbin/scan-backup-data.sh',
     minute  => fqdn_rand(60),
-    require => File['/usr/local/sbin/scan-backup-data.sh'],
   }
 }
