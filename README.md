@@ -47,14 +47,14 @@ re-run Puppet against it.
 
 ## Deployment Setup - Install Fabric (ideally in a virtualenv)
 
-    `pip install -r requirements.txt`
+    pip install -r requirements.txt
 
 ## Deployment
 
 If this is the first time that this repository is being applied to a machine,
 you need to run:
 
-`fab -c /dev/null production firstrun`
+    fab -c /dev/null production firstrun
 
 This `firstrun` task is to allow rsync to start up correctly, without
 requiring either an askpass helper or a TTY in which to collect the ubuntu
@@ -67,4 +67,4 @@ original glory once it has the chance to run successfully.
 If it's not the first time you are applying this repository to a machine, you
 can run:
 
-`fab -c /dev/null -u YOUR_SSH_USERNAME production deploy`
+    fab -c /dev/null -u YOUR_SSH_USERNAME production deploy
