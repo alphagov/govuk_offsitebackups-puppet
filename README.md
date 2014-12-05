@@ -1,21 +1,7 @@
 # GOV.UK Off-site Backups
 
-This repository contains packages and configuration in order to create an
-off-site back-up machine for GOV.UK. At a high level, it encompasses:
-
-- [alphagov/puppet-clamav](https://github.com/alphagov/puppet-clamav)
-- [alphagov/puppet-ext4mount](https://github.com/alphagov/puppet-ext4mount)
-- [alphagov/puppet-gds_accounts](https://github.com/alphagov/puppet-gds_accounts)
-- [alphagov/puppet-harden](https://github.com/alphagov/puppet-harden)
-- [alphagov/puppet-lvm](https://github.com/alphagov/puppet-lvm)
-- [alphagov/puppet-sudo](https://github.com/alphagov/puppet-sudo)
-- [attachmentgenie/ssh](https://github.com/attachmentgenie/puppet-module-ssh)
-- [attachmentgenie/ufw](https://github.com/attachmentgenie/puppet-module-ufw)
-- [blom/rssh](https://github.com/blom/puppet-rssh)
-- [puppetlabs/apt](https://forge.puppetlabs.com/puppetlabs/apt)
-
-Hiera is used as a lightweight ENC, therefore the vast majority of
-configuration can be found in `hieradata/common.yaml`.
+IaaS provisioning, Puppet, and deployment code for GOV.UK off-site backup
+machine.
 
 ## Testing
 
