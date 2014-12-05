@@ -9,15 +9,10 @@ To test changes made to this repository, first ensure that you have
 [Vagrant](http://vagrantup.com) installed, and then:
 
 1. Run `vagrant up` from the root of this repository
-2. When the box has booted successfully, run `vagrant ssh obnode0` to SSH to
+1. When the box has booted successfully, run `vagrant ssh obnode0` to SSH to
 the guest
-
-The machine always builds against the current branch of the repository.
-Thus, if you branch from master, make a change, then bring the Vagrant VM
-up, your changes should be reflected. It is best to `vagrant destroy` your
-virtual machine (to destroy it) if you wish to make another change, unless
-it is trivial - in which case you can run `vagrant provision obnode0` to
-re-run Puppet against it.
+1. Run `vagrant provision` to apply subsequent changes to the Puppet
+codebase.
 
 ## Deployment Setup - Install Fabric (ideally in a virtualenv)
 
