@@ -2,11 +2,12 @@
 set -eu
 
 function cleanup {
+  set +e
+  bundle exec vcloud-logout
   rm $FOG_RC
   unset FOG_RC
 }
 
-# Override default of ~/.fog and delete afterwards.
 export FOG_RC=$(mktemp /tmp/vcloud_fog_rc.XXXXXXXXXX)
 trap cleanup EXIT
 
