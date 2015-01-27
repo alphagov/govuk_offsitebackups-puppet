@@ -5,6 +5,7 @@
 class base::user (
   $assets_ssh_key,
   $backup_ssh_key,
+  $backup_download_ssh_key,
   $logs_ssh_key
 ) {
 
@@ -21,7 +22,7 @@ class base::user (
     shell        => '/usr/bin/rssh',
     create_group => true,
     groups       => [],
-    ssh_key      => $backup_ssh_key,
+    ssh_key      => [$backup_ssh_key, $backup_download_ssh_key],
   }
 
   account { 'transition-logs-backup':
