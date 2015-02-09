@@ -22,6 +22,8 @@ vapps:
       size: 102400
     - name: assetsbackup-assets2
       size: 524288
+    - name: assetsbackup-assets3
+      size: 524288
     bootstrap:
         script_path: 'vcloud/box/common/bootstrap.erb'
         vars:
