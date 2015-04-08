@@ -21,11 +21,6 @@ firewall_service:
       destination_ip: "31.210.241.201"
       source_ip: "80.194.77.100"
       destination_port_range: "22"
-    - description: "SSH access from interim production"
-      protocols: tcp
-      destination_ip: "31.210.241.201"
-      source_ip: "217.171.99.70"
-      destination_port_range: "22"
     - description: "SSH access from P1 production"
       protocols: tcp
       destination_ip: "31.210.241.201"
