@@ -36,6 +36,10 @@ firewall_service:
       destination_ip: "31.210.241.201"
       source_ip: "37.26.93.132"
       destination_port_range: "22"
+    - description: "SSH access from Carrenza Staging"
+      protocols: tcp
+      destination_ip: "31.210.241.201"
+      source_ip: "31.210.245.70"
 nat_service:
   enabled: true
   nat_rules:
