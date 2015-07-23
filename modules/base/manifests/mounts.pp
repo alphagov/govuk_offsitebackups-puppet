@@ -65,7 +65,7 @@ class base::mounts {
     }
 
     # lvm::volume { 'assets':
-    $assets_disks = [ '/dev/sdd', '/dev/sdf' ]
+    $assets_disks = [ '/dev/sdd', '/dev/sdf', '/dev/sdg', '/dev/sdh' ]
     $assets_vgname = 'assetsbackup'
     $assets_lvname = 'assets'
     physical_volume { $assets_disks:
@@ -75,7 +75,10 @@ class base::mounts {
         ensure           => present,
         physical_volumes => $assets_disks,
         require          => [ Physical_volume['/dev/sdd'],
-                              Physical_volume['/dev/sdf']],
+                              Physical_volume['/dev/sdf'],
+                              Physical_volume['/dev/sdg'],
+                              Physical_volume['/dev/sdh'],
+                            ],
     }
     logical_volume { $assets_lvname:
         ensure       => present,
