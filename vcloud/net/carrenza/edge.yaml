@@ -40,6 +40,10 @@ firewall_service:
       protocols: tcp
       destination_ip: "31.210.241.201"
       source_ip: "31.210.245.70"
+    - description: "SSH access from Carrenza Production"
+      protocols: tcp
+      destination_ip: "31.210.241.201"
+      source_ip: "31.210.245.86"
 nat_service:
   enabled: true
   nat_rules:
