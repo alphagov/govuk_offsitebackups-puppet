@@ -17,7 +17,8 @@ env.repo = 'git://github.com/alphagov/govuk_offsitebackups-puppet.git'
 def production():
     env.environment = 'production'
     env.hosts = [
-        'backup0.backup.provider1.production.govuk.service.gov.uk',
+        'backup0.backup.provider0.production.govuk.service.gov.uk',
+#       'backup0.backup.provider1.production.govuk.service.gov.uk',
         ]
 
 @task
@@ -49,7 +50,7 @@ def puppet_package():
     tempdir = tempfile.mkdtemp()
     atexit.register(shutil.rmtree, tempdir)
 
-    local('git clone %s %s/.' % (env.repo, tempdir))
+    local('git clone -b squash-disks %s %s/.' % (env.repo, tempdir))
 
     with lcd(tempdir):
         local('bundle install --quiet')
