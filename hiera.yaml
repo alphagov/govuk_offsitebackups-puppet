@@ -1,5 +1,6 @@
 :hierarchy:
-  - "node.%{::fqdn}"
+  - "node.backup0.backup.provider0.production.govuk.service.gov.uk"
+  - "node.backup0.backup.provider1.production.govuk.service.gov.uk"
   - "env.%{::environment}"
   - common
 :backends:
