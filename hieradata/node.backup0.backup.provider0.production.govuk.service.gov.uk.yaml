@@ -1,0 +1,5 @@
+---
+
+base::mounts::assets_disks:
+  - '/dev/sdd'
+  - '/dev/sde'
