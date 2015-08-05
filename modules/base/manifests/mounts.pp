@@ -49,11 +49,6 @@ class base::mounts(
         require       =>  Lvm::Volume['backup'],
     }
 
-    file { '/srv/backup-assets':
-        ensure  => directory,
-        owner   => 'govuk-assets',
-    }
-
     file { '/srv/backup-assets/whitehall':
         ensure  => directory,
         owner   => 'govuk-assets',
