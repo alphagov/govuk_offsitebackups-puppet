@@ -8,7 +8,7 @@
 # Always ensure `backup_data` directory exists
 
 class base::mounts(
-  $assets_disks
+  assets_disks,
 ){
 
     file { '/srv/backup-data':
@@ -49,6 +49,11 @@ class base::mounts(
         require       =>  Lvm::Volume['backup'],
     }
 
+    file { '/srv/backup-assets':
+        ensure  => directory,
+        owner   => 'govuk-assets',
+    }
+
     file { '/srv/backup-assets/whitehall':
         ensure  => directory,
         owner   => 'govuk-assets',
@@ -61,25 +66,34 @@ class base::mounts(
         group   => 'govuk-assets',
     }
 
-    file { '/srv/backup-assets':
-        ensure  => directory,
-        owner   => 'govuk-backup',
-        group   => 'govuk-backup',
+    # lvm::volume { 'assets':
+    $assets_vgname = 'assetsbackup'
+    $assets_lvname = 'assets'
+    physical_volume { $assets_disks:
+        ensure => present,
     }
-
-    lvm::volume { 'assets':
+    volume_group { $assets_vgname:
+        ensure           => present,
+        physical_volumes => $assets_disks,
+        require          => Physical_volume["$assets_disks"],
+    }
+    logical_volume { $assets_lvname:
+        ensure       => present,
+        volume_group => $assets_vgname,
+        require      => Volume_group[$assets_vgname],
+    }
+    filesystem { "/dev/${assets_vgname}/${assets_lvname}":
         ensure  => present,
-        pv      => $assets_disks,
-        vg      => 'assetsbackup',
-        fstype  => 'ext4',
+        fs_type => 'ext4',
+        require => Logical_volume[$assets_lvname]
     }
-
     ext4mount { '/srv/backup-assets':
-        mountoptions  => defaults,
-        disk          => '/dev/mapper/assetsbackup-assets',
-        before        => File ['/srv/backup-assets'],
-        require       => Lvm::Volume['graphite'],
+        mountoptions => 'defaults',
+        disk         => "/dev/mapper/${assets_vgname}-${assets_lvname}",
+        before       => File['/srv/backup-assets'],
+        require      => Filesystem["/dev/${assets_vgname}/${assets_lvname}"],
     }
+    # } end lvm::volume
 
     file { '/srv/backup-graphite':
         ensure  => directory,
