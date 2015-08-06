@@ -101,18 +101,32 @@ class base::mounts(
         group   => 'govuk-backup',
     }
 
-    lvm::volume { 'graphite':
+    # lvm::volume { 'graphite':
+    $graphite_vgname = 'graphitebackup'
+    $graphite_lvname = 'graphite'
+    physical_volume { $graphite_disks:
         ensure  => present,
-        pv      => '/dev/sde',
-        vg      => 'graphitebackup',
-        fstype  => 'ext4',
     }
-
+    volume_group { $graphite_vgname:
+        ensure            => present,
+        physical_volumes  => $graphite_disks,
+        require           => Physical_volume[$assets_disks],
+    }
+    logical_volume { $graphite_lvname:
+        ensure        => present,
+        volume_group  => $graphite_vgname,
+        require       => Volume_group[$graphite_vgname],
+    }
+    filesystem { "/dev/${graphite_vgname}/${graphite_lvname}":
+        ensure  => present,
+        fs_type => 'ext4',
+        require => Logical_volume[$graphite_lvname],
+    }
     ext4mount { '/srv/backup-graphite':
         mountoptions  => 'defaults',
         disk          => '/dev/mapper/graphitebackup-graphite',
         before        => File['/srv/backup-graphite'],
-        require       => Lvm::Volume['graphite'],
+        require       => Filesystem["/dev/${graphite_vgname}/${graphite_lvname}"],
     }
 
     file { '/srv/backup-graphite/tarballs':
