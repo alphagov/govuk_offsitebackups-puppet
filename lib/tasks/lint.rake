@@ -11,4 +11,4 @@ PuppetLint.configuration.send('disable_class_parameter_defaults')
 # http://puppet-lint.com/checks/class_inherits_from_params_class/
 PuppetLint.configuration.send('disable_class_inherits_from_params_class')
 # http://puppet-lint.com/checks/80chars/
-PuppetLint.configuration.send('disable_80chars_check')
+PuppetLint.configuration.send('disable_80chars')
