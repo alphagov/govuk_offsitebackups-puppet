@@ -1,0 +1,28 @@
+---
+vapps:
+- name: 'offsite-backup-1'
+  vdc_name: 'GOV.UK Off-site Backups (IL2-PROD-STANDARD)'
+  catalog_name: 'Packer'
+  vapp_template_name: 'ubuntu_trusty64_20150707'
+  vm:
+    hardware_config:
+      memory: '2048'
+      cpu: '2'
+    network_connections:
+    - name: Default
+      ip_address: '192.168.152.10'
+    extra_disks:
+    - name: backup-disk
+      size: 307200
+    - name: logs-disk
+      size: 524288
+    - name: assetsbackup-assets
+      size: 786432
+    - name: assetsbackup-assets2
+      size: 786432
+    - name: graphitebackup-graphite
+      size: 262144
+    bootstrap:
+        script_path: 'vcloud/box/common/bootstrap.erb'
+        vars:
+          pass_hash: '$6$/66cG1LV$F16Yn7DmFHL6Hkti8U0CBS9r7GtDT03KKsrdMVvVM79s2xONq9A4KdGEldozDanhsdgpg4ZzjWCwzOwxdCrWi0'
