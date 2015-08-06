@@ -9,6 +9,7 @@
 
 class base::mounts(
   $assets_disks,
+  $graphite_disks,
 ){
 
     file { '/srv/backup-data':
