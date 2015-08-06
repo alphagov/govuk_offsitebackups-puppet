@@ -1,0 +1,8 @@
+---
+
+base::mounts::assets_disks:
+  - '/dev/sdd'
+  - '/dev/sde'
+
+base::mounts::graphite_disks:
+  - '/dev/sdf'
