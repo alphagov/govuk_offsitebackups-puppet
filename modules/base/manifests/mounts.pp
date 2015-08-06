@@ -7,7 +7,9 @@
 #
 # Always ensure `backup_data` directory exists
 
-class base::mounts {
+class base::mounts(
+  $assets_disks,
+){
 
     file { '/srv/backup-data':
         ensure =>   directory,
@@ -65,7 +67,6 @@ class base::mounts {
     }
 
     # lvm::volume { 'assets':
-    $assets_disks = [ '/dev/sdd', '/dev/sdf', '/dev/sdg', '/dev/sdh' ]
     $assets_vgname = 'assetsbackup'
     $assets_lvname = 'assets'
     physical_volume { $assets_disks:
@@ -74,11 +75,7 @@ class base::mounts {
     volume_group { $assets_vgname:
         ensure           => present,
         physical_volumes => $assets_disks,
-        require          => [ Physical_volume['/dev/sdd'],
-                              Physical_volume['/dev/sdf'],
-                              Physical_volume['/dev/sdg'],
-                              Physical_volume['/dev/sdh'],
-                            ],
+        require          => Physical_volume[$assets_disks],
     }
     logical_volume { $assets_lvname:
         ensure       => present,
