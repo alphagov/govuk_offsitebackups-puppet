@@ -70,6 +70,7 @@ class base::mounts(
     # lvm::volume { 'assets':
     $assets_vgname = 'assetsbackup'
     $assets_lvname = 'assets'
+    $assets_fsname = "/dev/${assets_vgname}/${assets_lvname}"
     physical_volume { $assets_disks:
         ensure => present,
     }
@@ -83,7 +84,7 @@ class base::mounts(
         volume_group => $assets_vgname,
         require      => Volume_group[$assets_vgname],
     }
-    filesystem { "/dev/${assets_vgname}/${assets_lvname}":
+    filesystem { $assets_fsname:
         ensure  => present,
         fs_type => 'ext4',
         require => Logical_volume[$assets_lvname]
@@ -92,7 +93,7 @@ class base::mounts(
         mountoptions => 'defaults',
         disk         => "/dev/mapper/${assets_vgname}-${assets_lvname}",
         before       => File['/srv/backup-assets'],
-        require      => Filesystem["/dev/${assets_vgname}/${assets_lvname}"],
+        require      => Filesystem[$assets_fsname],
     }
     # } end lvm::volume
 
@@ -105,6 +106,7 @@ class base::mounts(
     # lvm::volume { 'graphite':
     $graphite_vgname = 'graphitebackup'
     $graphite_lvname = 'graphite'
+    $graphite_fsname = "/dev/${graphite_vgname}/${graphite_lvname}"
     physical_volume { $graphite_disks:
         ensure => present,
     }
@@ -118,7 +120,7 @@ class base::mounts(
         volume_group => $graphite_vgname,
         require      => Volume_group[$graphite_vgname],
     }
-    filesystem { "/dev/${graphite_vgname}/${graphite_lvname}":
+    filesystem { $graphite_fsname:
         ensure  => present,
         fs_type => 'ext4',
         require => Logical_volume[$graphite_lvname]
@@ -127,7 +129,7 @@ class base::mounts(
         mountoptions  => 'defaults',
         disk          => '/dev/mapper/graphitebackup-graphite',
         before        => File['/srv/backup-graphite'],
-        require       => Filesystem["/dev/${graphite_vgname}/${graphite_lvname}"],
+        require       => Filesystem[$graphite_fsname],
     }
     # } end lvm::volume
 
