@@ -1,0 +1,61 @@
+gateway: nft0025ei2-1
+firewall_service:
+  enabled: true
+  policy: drop
+  firewall_rules:
+    - description: "Outbound"
+      protocols: any
+      destination_ip: "external"
+      source_ip: "internal"
+    - description: "Public ICMP access to backup network"
+      protocols: icmp
+      destination_ip: "83.151.217.226"
+      source_ip: Any
+    - description: "SSH access from Aviation House .90"
+      protocols: tcp
+      destination_ip: "83.151.217.226"
+      source_ip: "80.194.77.90"
+      destination_port_range: "22"
+    - description: "SSH access from Aviation House .100"
+      protocols: tcp
+      destination_ip: "83.151.217.226"
+      source_ip: "80.194.77.100"
+      destination_port_range: "22"
+    - description: "SSH access from P1 production"
+      protocols: tcp
+      destination_ip: "83.151.217.226"
+      source_ip: "37.26.90.227"
+      destination_port_range: "22"
+    - description: "NRPE access from monitoring-1.management.production"
+      protocols: tcp
+      destination_ip: "83.151.217.226"
+      source_ip: "37.26.90.227"
+      destination_port_range: "5666"
+    - description: "SSH access from transition-logs-1"
+      protocols: tcp
+      destination_ip: "83.151.217.226"
+      source_ip: "37.26.93.132"
+      destination_port_range: "22"
+    - description: "SSH access from Carrenza Staging"
+      protocols: tcp
+      destination_ip: "83.151.217.226"
+      source_ip: "31.210.245.70"
+nat_service:
+  enabled: true
+  nat_rules:
+  - rule_type: 'SNAT'
+    network_id: '45ad6c5b-7b10-47cc-be43-44cbafd02c84'
+    original_ip: "192.168.152.0/24"
+    translated_ip: "83.151.217.226"
+  - rule_type: 'DNAT'
+    network_id: '45ad6c5b-7b10-47cc-be43-44cbafd02c84'
+    original_ip: "83.151.217.226"
+    original_port: "22"
+    translated_ip: "192.168.152.10"
+    translated_port: "22"
+  - rule_type: 'DNAT'
+    network_id: '45ad6c5b-7b10-47cc-be43-44cbafd02c84'
+    original_ip: "83.151.217.226"
+    original_port: "5666"
+    translated_ip: "192.168.152.10"
+    translated_port: "5666"
