@@ -7,7 +7,10 @@
 #
 # Always ensure `backup_data` directory exists
 
-class base::mounts {
+class base::mounts(
+  $assets_disks,
+  $graphite_disks,
+){
 
     file { '/srv/backup-data':
         ensure =>   directory,
@@ -65,27 +68,23 @@ class base::mounts {
     }
 
     # lvm::volume { 'assets':
-    $assets_disks = [ '/dev/sdd', '/dev/sdf', '/dev/sdg', '/dev/sdh' ]
     $assets_vgname = 'assetsbackup'
     $assets_lvname = 'assets'
+    $assets_fsname = "/dev/${assets_vgname}/${assets_lvname}"
     physical_volume { $assets_disks:
         ensure => present,
     }
     volume_group { $assets_vgname:
         ensure           => present,
         physical_volumes => $assets_disks,
-        require          => [ Physical_volume['/dev/sdd'],
-                              Physical_volume['/dev/sdf'],
-                              Physical_volume['/dev/sdg'],
-                              Physical_volume['/dev/sdh'],
-                            ],
+        require          => Physical_volume[$assets_disks],
     }
     logical_volume { $assets_lvname:
         ensure       => present,
         volume_group => $assets_vgname,
         require      => Volume_group[$assets_vgname],
     }
-    filesystem { "/dev/${assets_vgname}/${assets_lvname}":
+    filesystem { $assets_fsname:
         ensure  => present,
         fs_type => 'ext4',
         require => Logical_volume[$assets_lvname]
@@ -94,7 +93,7 @@ class base::mounts {
         mountoptions => 'defaults',
         disk         => "/dev/mapper/${assets_vgname}-${assets_lvname}",
         before       => File['/srv/backup-assets'],
-        require      => Filesystem["/dev/${assets_vgname}/${assets_lvname}"],
+        require      => Filesystem[$assets_fsname],
     }
     # } end lvm::volume
 
@@ -104,19 +103,35 @@ class base::mounts {
         group   => 'govuk-backup',
     }
 
-    lvm::volume { 'graphite':
-        ensure  => present,
-        pv      => '/dev/sde',
-        vg      => 'graphitebackup',
-        fstype  => 'ext4',
+    # lvm::volume { 'graphite':
+    $graphite_vgname = 'graphitebackup'
+    $graphite_lvname = 'graphite'
+    $graphite_fsname = "/dev/${graphite_vgname}/${graphite_lvname}"
+    physical_volume { $graphite_disks:
+        ensure => present,
     }
-
+    volume_group { $graphite_vgname:
+        ensure           => present,
+        physical_volumes => $graphite_disks,
+        require          => Physical_volume[$graphite_disks],
+    }
+    logical_volume { $graphite_lvname:
+        ensure       => present,
+        volume_group => $graphite_vgname,
+        require      => Volume_group[$graphite_vgname],
+    }
+    filesystem { $graphite_fsname:
+        ensure  => present,
+        fs_type => 'ext4',
+        require => Logical_volume[$graphite_lvname]
+    }
     ext4mount { '/srv/backup-graphite':
         mountoptions  => 'defaults',
         disk          => '/dev/mapper/graphitebackup-graphite',
         before        => File['/srv/backup-graphite'],
-        require       => Lvm::Volume['graphite'],
+        require       => Filesystem[$graphite_fsname],
     }
+    # } end lvm::volume
 
     file { '/srv/backup-graphite/tarballs':
         ensure  => directory,
