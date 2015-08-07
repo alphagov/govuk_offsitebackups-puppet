@@ -1,6 +1,6 @@
 ---
 vapps:
-- name: 'offsite-backup-1'
+- name: 'backup0'
   vdc_name: 'GOV.UK Off-site Backups (IL2-PROD-STANDARD)'
   catalog_name: 'Packer'
   vapp_template_name: 'ubuntu_trusty64_20150707'

@@ -1,26 +1,31 @@
 #!/bin/bash
 
 if [ $1 = "postcustomization" ]; then
-  echo 'ubuntu:<%= vars[:pass_hash] %>' | chpasswd -e 
-  
+  echo 'ubuntu:<%= vars[:pass_hash] %>' | chpasswd -e
+
   dpkg-reconfigure openssh-server
   set -e
   exec >/var/log/userdata.log 2>&1
   export DEBIAN_FRONTEND=noninteractive
   E="/etc/environment"
   echo "LC_ALL=en_GB.UTF-8" > $E
-  
-  R="/etc/resolv.conf"
-  echo "nameserver 8.8.8.8" >$R
-  echo "nameserver 8.8.4.4" >>$R
-  
+
+  <% if vars[:dns_suffix] %>
+    sed -i '/^127.0.1.1/d' /etc/hosts
+    sed -i '/^dns-search/d' /etc/network/interfaces
+    sed -i '/^dns-nameservers/d' /etc/network/interfaces
+    echo -e 'dns-search\t<%= vars[:dns_suffix] %>\ndns-nameservers\t8.8.8.8 8.8.4.4' >> /etc/network/interfaces
+    echo -e 'nameserver 8.8.8.8\nnameserver 8.8.4.4\nsearch <%= vars[:dns_suffix] %>' | resolvconf -a eth0.inet
+  <% end %>
+
+
   sed -i '/^deb cdrom/d' /etc/apt/sources.list
   wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
   dpkg -i puppetlabs-release-precise.deb
   apt-get update
-  
+
   export PATH=$PATH:/usr/local/bin
   apt-get -y install ruby1.9.3 puppet='3.4.*' puppet-common='3.4.*' facter='1.7.*'
   service puppet stop
-  
+
 fi
