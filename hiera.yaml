@@ -1,5 +1,5 @@
 :hierarchy:
-  - "node.%{::clientcert}"
+  - "node.%{::fqdn}"
   - "env.%{::environment}"
   - common
 :backends:
