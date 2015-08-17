@@ -21,25 +21,15 @@ firewall_service:
       destination_ip: "83.151.217.226"
       source_ip: "80.194.77.100"
       destination_port_range: "22"
-    - description: "SSH access from P1 production"
-      protocols: tcp
-      destination_ip: "83.151.217.226"
-      source_ip: "37.26.90.227"
-      destination_port_range: "22"
     - description: "NRPE access from monitoring-1.management.production"
       protocols: tcp
       destination_ip: "83.151.217.226"
-      source_ip: "37.26.90.227"
+      source_ip: "31.210.245.86"
       destination_port_range: "5666"
-    - description: "SSH access from transition-logs-1"
+    - description: "SSH access from Carrenza Production"
       protocols: tcp
       destination_ip: "83.151.217.226"
-      source_ip: "37.26.93.132"
-      destination_port_range: "22"
-    - description: "SSH access from Carrenza Staging"
-      protocols: tcp
-      destination_ip: "83.151.217.226"
-      source_ip: "31.210.245.70"
+      source_ip: "31.210.245.86"
 nat_service:
   enabled: true
   nat_rules:
