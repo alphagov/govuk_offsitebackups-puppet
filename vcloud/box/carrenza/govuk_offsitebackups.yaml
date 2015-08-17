@@ -1,6 +1,6 @@
 ---
 vapps:
-- name: 'offsite-backup-1'
+- name: 'backup0'
   vdc_name: '0e7t-IS-OVDC-BACKUP'
   catalog_name: 'ubuntu'
   vapp_template_name: 'preseeded-540059de'
