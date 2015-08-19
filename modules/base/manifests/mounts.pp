@@ -121,7 +121,7 @@ class base::mounts(
     }
     filesystem { $graphite_fsname:
       ensure  => present,
-      fstype  => ext4,
+      fs_type => ext4,
       require => Logical_volume[$graphite_lvname],
     }
     ext4mount { '/srv/backup-graphite':
