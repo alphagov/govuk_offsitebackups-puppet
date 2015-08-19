@@ -10,14 +10,6 @@ if [ $1 = "postcustomization" ]; then
   E="/etc/environment"
   echo "LC_ALL=en_GB.UTF-8" > $E
 
-#  <% if vars[:dns_suffix] %>
-#    sed -i '/^127.0.1.1/d' /etc/hosts
-#    sed -i '/^dns-search/d' /etc/network/interfaces
-#    sed -i '/^dns-nameservers/d' /etc/network/interfaces
-#    echo -e 'dns-search\t<%= vars[:dns_suffix] %>\ndns-nameservers\t8.8.8.8 8.8.4.4' >> /etc/network/interfaces
-#    echo -e 'nameserver 8.8.8.8\nnameserver 8.8.4.4\nsearch <%= vars[:dns_suffix] %>' | resolvconf -a eth0.inet
-#  <% end %>
-
   sed -i '/^deb cdrom/d' /etc/apt/sources.list
   wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
   dpkg -i puppetlabs-release-precise.deb
