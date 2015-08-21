@@ -23,7 +23,11 @@ codebase.
 If this is the first time that this repository is being applied to a machine,
 you need to run:
 
-    fab -c /dev/null production firstrun
+    fab -c /dev/null production <provider> firstrun
+
+`provider` needs to be set to either:
+  - `provider0` for Skyscape
+  - `provider1` for Carrenza
 
 This `firstrun` task is to allow rsync to start up correctly, without
 requiring either an askpass helper or a TTY in which to collect the ubuntu
@@ -36,4 +40,8 @@ original glory once it has the chance to run successfully.
 If it's not the first time you are applying this repository to a machine, you
 can run:
 
-    fab -c /dev/null -u YOUR_SSH_USERNAME production deploy
+    fab -c /dev/null -u <username> production <provider> deploy
+
+`provider` needs to be set to either:
+  - `provider0` for Skyscape
+  - `provider1` for Carrenza
