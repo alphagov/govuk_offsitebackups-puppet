@@ -40,7 +40,7 @@ original glory once it has the chance to run successfully.
 If it's not the first time you are applying this repository to a machine, you
 can run:
 
-    fab -c /dev/null -u YOUR_SSH_USERNAME production <provider> deploy
+    fab -c /dev/null -u <username> production <provider> deploy
 
 `provider` needs to be set to either:
   - `provider0` for Skyscape
