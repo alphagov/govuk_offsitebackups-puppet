@@ -16,9 +16,16 @@ env.repo = 'git://github.com/alphagov/govuk_offsitebackups-puppet.git'
 @runs_once
 def production():
     env.environment = 'production'
-    env.hosts = [
-        'backup0.backup.provider1.production.govuk.service.gov.uk',
-        ]
+
+@task
+@runs_once
+def provider0():
+    env.hosts = 'backup0.backup.provider0.production.govuk.service.gov.uk'
+
+@task
+@runs_once
+def provider1():
+    env.hosts = 'backup0.backup.provider1.production.govuk.service.gov.uk'
 
 @task
 @runs_once
