@@ -1,11 +1,3 @@
 language: ruby
-# Ignore lock file to facilitate matrix builds.
-before_install: rm Gemfile.lock
 # Explicitly ensure that we run on container-based infrastructure
 sudo: false
-rvm:
-  - 1.9.3
-  - ruby-head
-matrix:
-  allow_failures:
-    - rvm: ruby-head
