@@ -15,6 +15,7 @@ classes:
   - ssh::server
   - ufw
   - sudo
+  - unused_kernels
 
 base::supported_kernel::hwe_ver: 'trusty'
 
