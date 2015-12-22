@@ -75,6 +75,7 @@ base::user::logs_ssh_key: AAAAB3NzaC1yc2EAAAADAQABAAABAQDEBXBO6UU0zkOM+RL3TTir0Z
 nrpe::allowed_hosts:
   - 127.0.0.1
   - 37.26.90.227
+  - 31.210.245.86
 
 # Carrenza nameservers.
 resolvconf::nameservers:
