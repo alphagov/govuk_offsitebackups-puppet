@@ -3,7 +3,6 @@ classes:
   - base::packages
   - gds_accounts
   - apt::unattended_upgrades
-  - base::rotate
   - base::mounts
   - base::nrpe
   - base::supported_kernel
