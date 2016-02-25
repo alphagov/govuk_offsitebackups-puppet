@@ -9,10 +9,14 @@ class unused_kernels {
     ensure   => '0.2.0',
     provider => 'gem',
   } ->
-  file { '/etc/cron.daily/remove_unused_kernels.sh':
+  file { '/etc/cron.daily/remove_unused_kernels':
     ensure => present,
-    source => 'puppet:///modules/unused_kernels/etc/cron.daily/remove_unused_kernels.sh',
+    source => 'puppet:///modules/unused_kernels/etc/cron.daily/remove_unused_kernels',
     mode   => '0755',
   }
 
+  # FIXME: Remove once absent
+  file { '/etc/cron.daily/remove_unused_kernels.sh':
+    ensure => absent,
+  }
 }
