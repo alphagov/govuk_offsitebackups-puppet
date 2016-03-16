@@ -147,4 +147,25 @@ class base::mounts(
         group   => 'govuk-backup',
         require => Ext4mount['/srv/backup-graphite'],
     }
+
+    file { '/srv/backup-cdn-logs':
+        ensure => directory,
+        owner  => 'govuk-backup',
+        group  => 'govuk-backup',
+    }
+
+    lvm::volume { 'cdn-logs':
+        ensure => present,
+        pv     => '/dev/sdg',
+        vg     => 'cdnlogsbackup',
+        fstype => 'ext4',
+    }
+
+    ext4mount { '/srv/backup-cdn-logs':
+        mountoptions => 'defaults',
+        disk         => '/dev/mapper/cdnlogsbackup-cdn-logs',
+        before       => File['/srv/backup-cdn-logs'],
+        require      => Lvm::Volume['cdn-logs'],
+    }
+
 }
