@@ -22,6 +22,8 @@ vapps:
       size: 786432
     - name: graphitebackup-graphite
       size: 262144
+    - name: cdn-logs
+      size: 65536
     bootstrap:
         script_path: 'vcloud/box/common/bootstrap.erb'
         vars:
