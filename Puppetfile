@@ -1,7 +1,7 @@
 forge 'http://forge.puppetlabs.com/'
 
 mod 'attachmentgenie/ssh', '~> 1.1.1'
-mod 'attachmentgenie/ufw'
+mod 'attachmentgenie/ufw', '1.4.9'
 mod 'blom/rssh'
 mod 'gdsoperations/resolvconf'
 mod 'pdxcat/nrpe'
