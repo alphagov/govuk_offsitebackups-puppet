@@ -156,18 +156,27 @@ class base::mounts(
           group  => 'govuk-backup',
       }
 
-      lvm::volume { 'cdn-logs':
+      lvm::volume { 'cdnlogs':
           ensure => present,
           pv     => '/dev/sdg',
           vg     => 'cdnlogsbackup',
           fstype => 'ext4',
       }
 
+      # FIXME: Remove once deployed
+      lvm::volume { 'cdn-logs':
+          ensure => absent,
+          pv     => '/dev/sdg',
+          vg     => 'cdnlogsbackup',
+          fstype => 'ext4',
+          before => Lvm::Volume['cdnlogs'],
+      }
+
       ext4mount { '/srv/backup-cdn-logs':
           mountoptions => 'defaults',
-          disk         => '/dev/mapper/cdnlogsbackup-cdn-logs',
+          disk         => '/dev/mapper/cdnlogsbackup-cdnlogs',
           before       => File['/srv/backup-cdn-logs'],
-          require      => Lvm::Volume['cdn-logs'],
+          require      => Lvm::Volume['cdnlogs'],
       }
     }
 
