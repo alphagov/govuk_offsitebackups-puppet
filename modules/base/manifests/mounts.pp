@@ -10,7 +10,9 @@
 class base::mounts(
   $assets_disks,
   $graphite_disks,
+  $cdnlogs_disks = undef,
   $cdn_logs = false,
+  $transition_logs_backup = false,
 ){
 
     file { '/srv/backup-data':
@@ -32,23 +34,25 @@ class base::mounts(
         require       =>  Lvm::Volume['data'],
     }
 
-    file { '/srv/backup-logs':
-        ensure =>   directory,
-        owner  =>   'transition-logs-backup',
-    }
+    if $transition_logs_backup {
+      file { '/srv/backup-logs':
+          ensure =>   directory,
+          owner  =>   'transition-logs-backup',
+      }
 
-    lvm::volume { 'backup':
-        ensure  =>  present,
-        pv      =>  '/dev/sdc',
-        vg      =>  'logsbackup',
-        fstype  =>  'ext4',
-    }
+      lvm::volume { 'backup':
+          ensure  =>  present,
+          pv      =>  '/dev/sdc',
+          vg      =>  'logsbackup',
+          fstype  =>  'ext4',
+      }
 
-    ext4mount { '/srv/backup-logs':
-        mountoptions  =>  'defaults',
-        disk          =>  '/dev/mapper/logsbackup-backup',
-        before        =>  File['/srv/backup-logs'],
-        require       =>  Lvm::Volume['backup'],
+      ext4mount { '/srv/backup-logs':
+          mountoptions  =>  'defaults',
+          disk          =>  '/dev/mapper/logsbackup-backup',
+          before        =>  File['/srv/backup-logs'],
+          require       =>  Lvm::Volume['backup'],
+      }
     }
 
     file { '/srv/backup-assets':
@@ -155,19 +159,38 @@ class base::mounts(
           owner  => 'govuk-backup',
           group  => 'govuk-backup',
       }
-
-      lvm::volume { 'cdnlogs':
-          ensure => present,
-          pv     => '/dev/sdg',
-          vg     => 'cdnlogsbackup',
-          fstype => 'ext4',
+      # FIXME: We currently unpack lvm::volume to work around MODULES-5
+      # (https://tickets.puppetlabs.com/browse/MODULES-5), however we should
+      # upgrade puppetlabs/lvm and re-use lvm::volume properly after this has
+      # been done.
+      #
+      # lvm::volume { 'cdnlogs':
+      $cdnlogs_vgname = 'cdnlogsbackup'
+      $cdnlogs_lvname = 'cdnlogs'
+      $cdnlogs_fsname = "/dev/${cdnlogs_vgname}/${cdnlogs_lvname}"
+      physical_volume { $cdnlogs_disks:
+        ensure => present,
       }
-
+      volume_group { $cdnlogs_vgname:
+        ensure           => present,
+        physical_volumes => $cdnlogs_disks,
+        require          => Physical_volume[$cdnlogs_disks],
+      }
+      logical_volume { $cdnlogs_lvname:
+        ensure       => present,
+        volume_group => $cdnlogs_vgname,
+        require      => Volume_group[$cdnlogs_vgname],
+      }
+      filesystem { $cdnlogs_fsname:
+        ensure  => present,
+        fs_type => ext4,
+        require => Logical_volume[$cdnlogs_lvname],
+      }
       ext4mount { '/srv/backup-cdn-logs':
           mountoptions => 'defaults',
           disk         => '/dev/mapper/cdnlogsbackup-cdnlogs',
           before       => File['/srv/backup-cdn-logs'],
-          require      => Lvm::Volume['cdnlogs'],
+          require      => Filesystem[$cdnlogs_fsname],
       }
     }
 
