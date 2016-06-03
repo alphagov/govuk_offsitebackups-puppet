@@ -7,4 +7,8 @@ base::mounts::assets_disks:
 base::mounts::graphite_disks:
   - '/dev/sdf'
 
+base::mounts::cdnlogs_disks:
+  - '/dev/sdc'
+  - '/dev/sdg'
+
 base::mounts::cdn_logs: true
