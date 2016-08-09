@@ -1,4 +1,4 @@
-forge 'http://forge.puppetlabs.com/'
+forge 'https://forge.puppet.com/'
 
 mod 'attachmentgenie/ssh', '~> 1.1.1'
 mod 'attachmentgenie/ufw', '1.4.9'
