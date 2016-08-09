@@ -4,7 +4,7 @@ FORGE
     torrancew/account (0.0.5)
 
 FORGE
-  remote: http://forge.puppetlabs.com/
+  remote: https://forge.puppet.com/
   specs:
     attachmentgenie/ssh (1.1.2)
       puppetlabs/stdlib (>= 2.2.1)
