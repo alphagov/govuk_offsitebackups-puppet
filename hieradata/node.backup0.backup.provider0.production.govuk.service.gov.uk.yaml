@@ -3,6 +3,7 @@
 base::mounts::assets_disks:
   - '/dev/sdd'
   - '/dev/sde'
+  - '/dev/sdh'
 
 base::mounts::graphite_disks:
   - '/dev/sdf'
