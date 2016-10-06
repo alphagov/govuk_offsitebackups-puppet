@@ -24,6 +24,8 @@ vapps:
       size: 262144
     - name: cdn-logs
       size: 65536
+    - name: assetsbackup-assets3
+      size: 786432
     bootstrap:
         script_path: 'vcloud/box/common/bootstrap.erb'
         vars:
