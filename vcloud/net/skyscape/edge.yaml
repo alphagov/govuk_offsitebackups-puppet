@@ -21,6 +21,36 @@ firewall_service:
       destination_ip: "83.151.217.226"
       source_ip: "80.194.77.100"
       destination_port_range: "22"
+    - description: "SSH access from White Chapel Building .212"
+      protocols: tcp
+      destination_ip: "83.151.217.226"
+      source_ip: "213.86.153.212"
+      destination_port_range: "22"
+    - description: "SSH access from White Chapel Building .213"
+      protocols: tcp
+      destination_ip: "83.151.217.226"
+      source_ip: "213.86.153.213"
+      destination_port_range: "22"
+    - description: "SSH access from White Chapel Building .214"
+      protocols: tcp
+      destination_ip: "83.151.217.226"
+      source_ip: "213.86.153.214"
+      destination_port_range: "22"
+    - description: "SSH access from White Chapel Building .235"
+      protocols: tcp
+      destination_ip: "83.151.217.226"
+      source_ip: "213.86.153.235"
+      destination_port_range: "22"
+    - description: "SSH access from White Chapel Building .236"
+      protocols: tcp
+      destination_ip: "83.151.217.226"
+      source_ip: "213.86.153.236"
+      destination_port_range: "22"
+    - description: "SSH access from White Chapel Building .237"
+      protocols: tcp
+      destination_ip: "83.151.217.226"
+      source_ip: "213.86.153.237"
+      destination_port_range: "22"
     - description: "NRPE access from monitoring-1.management.production"
       protocols: tcp
       destination_ip: "83.151.217.226"
